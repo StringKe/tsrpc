@@ -22,11 +22,7 @@ import { importTsrpcConfig } from './models/importTS'
 import { TsrpcConfig } from './models/TsrpcConfig'
 import { error, formatStr, showLogo } from './models/util'
 
-
-
-
-
-const args = minimist(process.argv.slice(2))
+const args: any = minimist(process.argv.slice(2))
 
 export const resPath =
     process.env['NODE_ENV'] === 'production'

@@ -67,7 +67,7 @@
       "options": {
         "access": "restricted",
         "registry": "https://registry.npmjs.org/",
-        "replaceScope": "@ntsrpc"
+        "replaceScope": "ntsrpc"
       }
     },
     "publish-github": {
@@ -75,7 +75,7 @@
       "options": {
         "access": "restricted",
         "registry": "https://npm.pkg.github.com/",
-        "replaceScope": "@stringke"
+        "replaceScope": "stringke"
       }
     },
     "publish": {

@@ -5,17 +5,23 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "project": "packages/tsrpc/tsrpc/package.json",
-      "outputPath": "dist/tsrpc-tsrpc/types",
-      "main": "packages/tsrpc/tsrpc/src/index.ts",
-      "tsConfig": "packages/tsrpc/tsrpc/tsconfig.lib.json",
-      "format": [
-        "esm",
-        "cjs"
+      "executor": "@nrwl/rollup:rollup",
+      "outputs": [
+        "{options.outputPath}"
       ],
-      "generateExportsField": true,
-      "buildableProjectDepsInPackageJsonType": "dependencies",
-      "assets": []
+      "options": {
+        "project": "packages/tsrpc/tsrpc/package.json",
+        "outputPath": "dist/tsrpc-tsrpc/types",
+        "main": "packages/tsrpc/tsrpc/src/index.ts",
+        "tsConfig": "packages/tsrpc/tsrpc/tsconfig.lib.json",
+        "format": [
+          "esm",
+          "cjs"
+        ],
+        "generateExportsField": true,
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "assets": []
+      }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -43,7 +49,7 @@
       "options": {
         "access": "restricted",
         "registry": "https://registry.npmjs.org/",
-        "replaceScope": "@ntsrpc"
+        "replaceScope": "ntsrpc"
       }
     },
     "publish-github": {
@@ -51,7 +57,7 @@
       "options": {
         "access": "restricted",
         "registry": "https://npm.pkg.github.com/",
-        "replaceScope": "@stringke"
+        "replaceScope": "stringke"
       }
     },
     "publish": {

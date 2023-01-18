@@ -17,10 +17,6 @@ import { importTS } from './importTS'
 import { TsrpcConfig } from './TsrpcConfig'
 import { error, formatStr } from './util'
 
-
-
-
-
 export class ProtoUtil {
     static async loadServiceProto(
         filepath: string,
@@ -36,12 +32,15 @@ export class ProtoUtil {
 
         if (filepath.endsWith('.ts')) {
             // 首先尝试通过 ts-node 直接解析
-            let module: { [key: string]: any } | undefined
+            let module: Record<string, any> | undefined
             try {
                 module = importTS(path.resolve(filepath))
-            } catch (e) {}
-            if (module?.serviceProto) {
-                return module.serviceProto
+            } catch (e) {
+                // nothing
+            }
+
+            if (module && module['serviceProto']) {
+                return module['serviceProto']
             }
 
             // ts-node 解析失败：由于上面检测过，文件必定存在，所以此时应该是 serviceProto.ts 编译报错
@@ -58,7 +57,9 @@ export class ProtoUtil {
                         try {
                             const proto = JSON.parse(match[1])
                             return proto
-                        } catch {}
+                        } catch {
+                            // nothing
+                        }
                     }
                 }
             }
@@ -166,9 +167,10 @@ export class ProtoUtil {
         // process.chdir(protocolDir);
 
         // 生成 types （TSBufferSchema）
-        const EXP_DIR_TYPE_NAME = /^(.+\/)?(Ptl|Msg)([^\.\/\\]+)\.ts$/
+        const EXP_DIR_TYPE_NAME = /^(.+\/)?(Ptl|Msg)([^./\\]+)\.ts$/
+        let typeProto: TSBufferProto
         try {
-            var typeProto = await new TSBufferProtoGenerator({
+            typeProto = await new TSBufferProtoGenerator({
                 verbose: options.verbose,
                 baseDir: protocolDir,
                 customSchemaIds: [
@@ -212,7 +214,9 @@ export class ProtoUtil {
             const typePath = filepath.replace(/^\.\//, '').replace(/\.ts$/, '')
 
             // 解析conf
-            const tsModule = importTS(path.resolve(protocolDir, filepath))
+            const tsModule = importTS(
+                path.resolve(protocolDir, filepath),
+            ) as any
             const conf: { [key: string]: any } | undefined = tsModule.conf
 
             // Ptl 检测 Req 和 Res 类型齐全
@@ -375,7 +379,7 @@ export class ProtoUtil {
             const usedNames: { [name: string]: 1 } = {}
             const getAsName = (name: string) => {
                 while (usedNames[name]) {
-                    const match = name.match(/(^.*)\_(\d+)$/)
+                    const match = name.match(/(^.*)_(\d+)$/)
                     if (match) {
                         const seq = parseInt(match[2]) + 1
                         name = match[1] + '_' + seq
@@ -402,7 +406,7 @@ export class ProtoUtil {
             for (const svc of options.proto.services) {
                 const match = svc.name
                     .replace(/\\/g, '/')
-                    .match(/^(.*\/)*([^\/]+)$/)
+                    .match(/^(.*\/)*([^/]+)$/)
                 if (!match) {
                     throw new Error(`Invalid svc name: ${svc.name}`)
                 }
@@ -563,9 +567,10 @@ export const serviceProto: ServiceProto<ServiceType> = ${JSON.stringify(
         noEmitWhenNoChange?: boolean,
         keepComment?: boolean,
     ) {
+        let resGenProto: any
         // new
         try {
-            var resGenProto = await ProtoUtil.generateServiceProto({
+            resGenProto = await ProtoUtil.generateServiceProto({
                 protocolDir: confItem.ptlDir,
                 oldProto: old,
                 ignore: confItem.ignore,
@@ -598,5 +603,7 @@ export const serviceProto: ServiceProto<ServiceType> = ${JSON.stringify(
         return resGenProto.newProto
     }
 
-    static toJsonSchema() {}
+    static toJsonSchema() {
+        // nothing
+    }
 }

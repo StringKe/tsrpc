@@ -6,7 +6,38 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "syncVersions": true,
-        "preset": "conventional"
+        "preset": "conventional",
+        "postTargets": [],
+        "releaseAs": "patch"
+      }
+    },
+    "version-major": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "syncVersions": true,
+        "preset": "conventional",
+        "postTargets": [],
+        "releaseAs": "major"
+      }
+    },
+    "version-minor": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "syncVersions": true,
+        "preset": "conventional",
+        "postTargets": [],
+        "releaseAs": "minor"
+      }
+    },
+    "prod": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm nx affected --target build --all",
+          "pnpm nx affected --target publish --all --exclude=workspace",
+          "pnpm nx run workspace:container"
+        ],
+        "parallel": false
       }
     }
   }

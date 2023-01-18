@@ -22,14 +22,12 @@ const config = {
             /** @type {import('@docusaurus/preset-classic').Options} */
             ({
                 docs: {
-                    sidebarPath: require.resolve('./sidebars.js'),
-                    // Please change this to your repo.
+                    sidebarPath: require.resolve('./sidebars.js'), // Please change this to your repo.
                     editUrl:
                         'https://github.com/facebook/docusaurus/edit/main/website/',
                 },
                 blog: {
-                    showReadingTime: true,
-                    // Please change this to your repo.
+                    showReadingTime: true, // Please change this to your repo.
                     editUrl:
                         'https://github.com/facebook/docusaurus/edit/main/website/blog/',
                 },

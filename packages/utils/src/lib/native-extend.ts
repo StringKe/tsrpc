@@ -91,3 +91,22 @@ export function dateFormat(date: Date, format = 'YYYY-MM-DD hh:mm:ss') {
                 : `${ms.length === 1 ? '00' : ms.length === 2 ? '0' : ''}${ms}`
         })
 }
+
+export function groupBy(
+    array: any[],
+    grouper: (v: any) => string,
+): any[] & { key: any } {
+    const group = array.reduce((prev: any, next: any) => {
+        const groupKey = grouper(next)
+        if (!prev[groupKey]) {
+            prev[groupKey] = []
+        }
+        prev[groupKey].push(next)
+        return prev
+    }, {})
+    return Object.keys(group).map((key) => {
+        const arr = group[key]
+        arr.key = key
+        return arr
+    }) as any
+}

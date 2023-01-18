@@ -1,20 +1,28 @@
-import { OpenAPIV3 } from 'openapi-types';
-import { processString } from 'typescript-formatter';
+/* eslint-disable no-case-declarations */
+import { last, merge, orderBy } from 'lodash'
+import { OpenAPIV3 } from 'openapi-types'
+import { processString } from 'typescript-formatter'
 
+import {
+    IntersectionTypeSchema,
+    OmitTypeSchema,
+    OverwriteTypeSchema,
+    PartialTypeSchema,
+    PickTypeSchema,
+    SchemaType,
+    TSBufferProto,
+    TSBufferSchema,
+    UnionTypeSchema,
+} from '@ntsrpc/tsbuffer-schema'
+import {
+    FlatInterfaceTypeSchema,
+    TSBufferValidator,
+} from '@ntsrpc/tsbuffer-validator'
+import { ServiceProto } from '@ntsrpc/tsrpc-proto'
+import { groupBy } from '@ntsrpc/utils'
 
-
-import { IntersectionTypeSchema, OmitTypeSchema, OverwriteTypeSchema, PartialTypeSchema, PickTypeSchema, SchemaType, TSBufferProto, TSBufferSchema, UnionTypeSchema } from '@ntsrpc/tsbuffer-schema';
-import { FlatInterfaceTypeSchema, TSBufferValidator } from '@ntsrpc/tsbuffer-validator';
-import { ServiceProto } from '@ntsrpc/tsrpc-proto';
-
-
-
-import { ApiService, ServiceMapUtil } from './ServiceMapUtil';
-import { TSAPI } from './TSAPI';
-
-
-
-
+import { ApiService, ServiceMapUtil } from './ServiceMapUtil'
+import { TSAPI } from './TSAPI'
 
 // https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md
 // https://tools.ietf.org/html/draft-bhutton-json-schema-00#section-4.2.1
@@ -53,7 +61,7 @@ export class ApiDocUtil {
         // schemas
         const schemas: NonNullable<OpenAPIV3.ComponentsObject['schemas']> = {}
         for (const key in proto.types) {
-            schemas[key.replace(/[\.\/]/g, '_')] = this.toSchemaObject(
+            schemas[key.replace(/[./]/g, '_')] = this.toSchemaObject(
                 proto.types[key],
             )
         }
@@ -64,7 +72,7 @@ export class ApiDocUtil {
         const pathObj: OpenAPIV3.PathsObject = Object.fromEntries(
             apiSvcs.map((v) => {
                 const nameArr = v.name.split('/')
-                const lastName = nameArr.last()!
+                const lastName = last(nameArr)
                 const tags =
                     nameArr.length > 1
                         ? [nameArr.slice(0, nameArr.length - 1).join('/')]
@@ -84,10 +92,7 @@ export class ApiDocUtil {
                                     schema: {
                                         $ref:
                                             '#/components/schemas/' +
-                                            v.reqSchemaId.replace(
-                                                /[\.\/]/g,
-                                                '_',
-                                            ),
+                                            v.reqSchemaId.replace(/[./]/g, '_'),
                                     },
                                 },
                             },
@@ -110,7 +115,7 @@ export class ApiDocUtil {
                                                     $ref:
                                                         '#/components/schemas/' +
                                                         v.resSchemaId.replace(
-                                                            /[\.\/]/g,
+                                                            /[./]/g,
                                                             '_',
                                                         ),
                                                 },
@@ -249,6 +254,7 @@ export class ApiDocUtil {
                     break
                 }
 
+                // eslint-disable-next-line no-case-declarations
                 const type = typeof schema.literal
                 if (
                     type === 'bigint' ||
@@ -271,7 +277,7 @@ export class ApiDocUtil {
                 if (schema.properties) {
                     const schemaProperties: NonNullable<
                         (typeof schema)['properties']
-                    > = Object.merge([], schema.properties)
+                    > = merge([], schema.properties)
                     output.properties = Object.fromEntries(
                         schemaProperties.map((property) => {
                             // A | null | undefined -> A?
@@ -347,9 +353,11 @@ export class ApiDocUtil {
                 break
             }
             case SchemaType.Reference:
-                ;(output as any).$ref =
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                output['$ref'] =
                     '#/components/schemas/' +
-                    schema.target.replace(/[\.\/]/g, '_')
+                    schema.target.replace(/[./]/g, '_')
                 break
             case SchemaType.Union: {
                 const members = schema.members.filter((v) => {
@@ -397,7 +405,7 @@ export class ApiDocUtil {
                             if (literalTypes.every((v) => !!v)) {
                                 const uniqueLiterals = literalTypes
                                     .map((v) => v!.literal)
-                                    .distinct()
+                                    .filter((v, i, a) => a.indexOf(v) === i)
                                 if (
                                     uniqueLiterals.length ===
                                     literalTypes.length
@@ -407,8 +415,7 @@ export class ApiDocUtil {
                                         this.toSchemaObject(v.type),
                                     )
                                     output.discriminator = {
-                                        propertyName: disProp.name,
-                                        // mapping: Object.fromEntries(flats.map((v, i) => {
+                                        propertyName: disProp.name, // mapping: Object.fromEntries(flats.map((v, i) => {
                                         //     let lProp = v!.properties.find(v1 => v1.name === disProp.name)!;
                                         //     let lType = lProp.type as LiteralTypeSchema;
                                         //     return [lType.literal, this.toSchemaObject(members[i].type)]
@@ -425,7 +432,7 @@ export class ApiDocUtil {
                             .map((v) =>
                                 JSON.stringify(this.toSchemaObject(v.type)),
                             )
-                            .distinct()
+                            .filter((v, i, a) => a.indexOf(v) === i)
                             .map((v) => JSON.parse(v))
                         if (anyOf.length > 1) {
                             output.anyOf = anyOf
@@ -503,7 +510,7 @@ export class ApiDocUtil {
                 '\n\n' +
                 this._toCodeData.refs
                     .map((v) => {
-                        const refName = v.split('/').last()!
+                        const refName = last(v.split('/'))
                         let refCode = this._toCode(proto[v], { isRoot: true })
                         refCode = `${
                             this.protoHelper.isInterface(schema)
@@ -536,8 +543,7 @@ export class ApiDocUtil {
         const output: TSAPI = {
             version: '1.0.0',
             servers: ['http://localhost:3000'],
-            apis: [],
-            // schemas: {}
+            apis: [], // schemas: {}
         }
 
         // Schema
@@ -553,7 +559,7 @@ export class ApiDocUtil {
             ServiceMapUtil.getServiceMap(proto).apiName2Service,
         ) as ApiService[]
         for (const api of apiSvcs) {
-            const basename = api.name.split('/').last()!
+            const basename = last(api.name.split('/'))
 
             const commentArr = proto.types[api.reqSchemaId].comment
                 ?.trim()
@@ -773,7 +779,7 @@ export class ApiDocUtil {
                 return this._toCode(this.protoHelper.parseReference(schema))
             case SchemaType.Reference: {
                 if (this._toCodeData.refs.includes(schema.target)) {
-                    return schema.target.split('/').last()!
+                    return last(schema.target.split('/')) as never
                 }
                 return this._toCode(this.protoHelper.parseReference(schema), {
                     schemaId: schema.target,
@@ -790,7 +796,8 @@ export class ApiDocUtil {
                             ? `(${code})`
                             : code
                     })
-                    .distinct()
+
+                    .filter((v, i, a) => a.indexOf(v) === i)
                     .join(' | ')
             case SchemaType.Intersection:
                 return schema.members
@@ -803,7 +810,8 @@ export class ApiDocUtil {
                             ? `(${code})`
                             : code
                     })
-                    .distinct()
+
+                    .filter((v, i, a) => a.indexOf(v) === i)
                     .join(' & ')
             case SchemaType.NonNullable:
                 return `NonNullable<${this._toCode(schema.target)}>`
@@ -932,29 +940,29 @@ export class ApiDocUtil {
             .map((v) => {
                 return {
                     type: 'api',
-                    name: v.api.title || v.api.path.split('/').last(),
+                    name: v.api.title || last(v.api.path.split('/')),
                     api: v.api,
-                }
+                } as ApiTreeApiNode
             })
 
         // 整理这一级的 folder 节点
-        const folderNodes: ApiTreeFolderNode[] = typedApis
-            .filter((v) => v.type === 'folder')
-            .groupBy((v) => v.groupName)
-            .map((v) => ({
-                type: 'folder',
-                name: v.key,
-                children: this._toApiTree(
-                    v.map((v1) => v1.api),
-                    prefix + v.key + '/',
-                    maxDepth,
-                ),
-            }))
+        const folderNodes: ApiTreeFolderNode[] = groupBy(
+            typedApis.filter((v) => v.type === 'folder'),
+            (v) => v.groupName,
+        ).map((v) => ({
+            type: 'folder',
+            name: v.key,
+            children: this._toApiTree(
+                v.map((v1: any) => v1.api),
+                prefix + v.key + '/',
+                maxDepth,
+            ),
+        }))
 
         // 排序
         return [
-            ...folderNodes.orderBy((v) => v.name),
-            ...apiNodes.orderBy((v) => v.api.path),
+            ...orderBy(folderNodes, (v) => v.name),
+            ...orderBy(apiNodes, (v) => v.api.path),
         ]
     }
 
