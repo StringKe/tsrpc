@@ -19,8 +19,10 @@ specifiers:
   '@types/jest': 28.1.1
   '@types/lodash': ^4.14.191
   '@types/node': 18.7.1
+  '@types/ws': ^8.5.4
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
+  chalk: ^5.2.0
   clsx: ^1.2.1
   eslint: ~8.15.0
   eslint-config-prettier: 8.1.0
@@ -35,17 +37,20 @@ specifiers:
   ts-node: 10.9.1
   tslib: ^2.3.0
   typescript: ^4.9.4
+  ws: ^8.12.0
 
 dependencies:
   '@docusaurus/core': 2.1.0_647jyqlevahatnifujrk2avb6m
   '@docusaurus/preset-classic': 2.1.0_xrdthdzuj6qeglebx55jqb7gze
   '@ianvs/prettier-plugin-sort-imports': 3.7.1_prettier@2.8.3
   '@mdx-js/react': 1.6.22_react@17.0.2
+  chalk: 5.2.0
   clsx: 1.2.1
   prism-react-renderer: 1.3.5_react@17.0.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   tslib: 2.4.1
+  ws: 8.12.0
 
 devDependencies:
   '@docusaurus/module-type-aliases': 2.1.0_sfoxds7t5ydpegc3knd667wn6m
@@ -62,6 +67,7 @@ devDependencies:
   '@types/jest': 28.1.1
   '@types/lodash': 4.14.191
   '@types/node': 18.7.1
+  '@types/ws': 8.5.4
   '@typescript-eslint/eslint-plugin': 5.48.2_6zc6a62gq6i7nrk7f3ktmrde6m
   '@typescript-eslint/parser': 5.48.2_7xejdone6kwdndpjp5nwx3ofcu
   eslint: 8.15.0
@@ -3947,7 +3953,6 @@ packages:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
     dependencies:
       '@types/node': 18.7.1
-    dev: false
 
   /@types/yargs-parser/21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
@@ -4893,6 +4898,11 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+
+  /chalk/5.2.0:
+    resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+    dev: false
 
   /char-regex/1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
