@@ -1,7 +1,7 @@
-import { tsrpcTsrpcMiniapp } from './tsrpc-tsrpc-miniapp';
+import { tsrpcTsrpcMiniapp } from './tsrpc-tsrpc-miniapp'
 
 describe('tsrpcTsrpcMiniapp', () => {
-  it('should work', () => {
-    expect(tsrpcTsrpcMiniapp()).toEqual('tsrpc-tsrpc-miniapp');
-  });
-});
+    it('should work', () => {
+        expect(tsrpcTsrpcMiniapp()).toEqual('tsrpc-tsrpc-miniapp')
+    })
+})

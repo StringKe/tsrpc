@@ -1,17 +1,17 @@
 /* eslint-disable */
 export default {
-  displayName: 'tsbuffer-tsbuffer-proto-generator',
-  preset: '../../../jest.preset.js',
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
+    displayName: 'tsbuffer-tsbuffer-proto-generator',
+    preset: '../../../jest.preset.js',
+    globals: {
+        'ts-jest': {
+            tsconfig: '<rootDir>/tsconfig.spec.json',
+        },
     },
-  },
-  testEnvironment: 'node',
-  transform: {
-    '^.+\\.[tj]s$': 'ts-jest',
-  },
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory:
-    '../../../coverage/packages/tsbuffer/tsbuffer-proto-generator',
-};
+    testEnvironment: 'node',
+    transform: {
+        '^.+\\.[tj]s$': 'ts-jest',
+    },
+    moduleFileExtensions: ['ts', 'js', 'html'],
+    coverageDirectory:
+        '../../../coverage/packages/tsbuffer/tsbuffer-proto-generator',
+}

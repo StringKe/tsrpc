@@ -1,1 +1,1 @@
-export * from './lib/tsrpc-tsrpc-miniapp';
+export * from './lib/tsrpc-tsrpc-miniapp'

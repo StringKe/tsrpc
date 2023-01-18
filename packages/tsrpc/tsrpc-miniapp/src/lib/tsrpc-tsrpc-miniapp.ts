@@ -1,3 +1,3 @@
 export function tsrpcTsrpcMiniapp(): string {
-  return 'tsrpc-tsrpc-miniapp';
+    return 'tsrpc-tsrpc-miniapp'
 }

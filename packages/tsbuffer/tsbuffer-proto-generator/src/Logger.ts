@@ -4,11 +4,11 @@
  * Or you can write your own implementation, for example, to report to a log system, or hide some log output.
  */
 export interface Logger {
-  debug(...args: unknown[]): void;
+    debug(...args: unknown[]): void
 
-  log(...args: unknown[]): void;
+    log(...args: unknown[]): void
 
-  warn(...args: unknown[]): void;
+    warn(...args: unknown[]): void
 
-  error(...args: unknown[]): void;
+    error(...args: unknown[]): void
 }

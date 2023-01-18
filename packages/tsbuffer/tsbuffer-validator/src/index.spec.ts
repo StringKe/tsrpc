@@ -1,6 +1,10 @@
 import { expect } from '@jest/globals'
 
-import { SchemaType, TSBufferSchema } from '@ntsrpc/tsbuffer-schema'
+import {
+    LiteralTypeSchema,
+    SchemaType,
+    TSBufferSchema,
+} from '@ntsrpc/tsbuffer-schema'
 
 import { ErrorType } from './ErrorMsg'
 import { TSBufferValidator } from './TSBufferValidator'
@@ -284,5 +288,55 @@ describe('TsBuffer-Validator', () => {
         expect(validator.validate(123, 'a/b').isSucc).toBe(true)
         expect(validator.validate('123', 'a/b').isSucc).toBe(true)
         expect(validator.validate({}, 'a/b').isSucc).toBe(true)
+    })
+
+    it('Base: Literal', function () {
+        const schema: LiteralTypeSchema = {
+            type: SchemaType.Literal,
+            literal: '123',
+        }
+        const validator = new TSBufferValidator({
+            'a/b': schema,
+        })
+
+        expect(validator.validate('123', 'a/b').isSucc).toBe(true)
+
+        const values = [123, null, undefined] as const
+
+        values.forEach((v) => {
+            expect(validator.validate(v, 'a/b').errMsg).toBe(
+                ValidateResultUtil.error(
+                    ErrorType.InvalidLiteralValue,
+                    schema.literal,
+                    v,
+                ).errMsg,
+            )
+        })
+
+        const otherValues = [123, true, null, undefined, null]
+
+        otherValues.forEach((v) => {
+            const errorValue = `v${String(v)}`
+            const loopSchema: LiteralTypeSchema = {
+                type: SchemaType.Literal,
+                literal: v,
+            }
+            const loopValidator = new TSBufferValidator(
+                {
+                    'a/b': loopSchema,
+                },
+                {
+                    strictNullChecks: true,
+                },
+            )
+            expect(loopValidator.validate(v, 'a/b').isSucc).toBe(true)
+            expect(validator.validate(errorValue, 'a/b').errMsg).toBe(
+                ValidateResultUtil.error(
+                    ErrorType.InvalidLiteralValue,
+                    schema.literal,
+                    errorValue,
+                ).errMsg,
+            )
+        })
     })
 })

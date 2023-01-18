@@ -1,21 +1,21 @@
 {
-  "name": "docs-tsrpc",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/docs/tsrpc/src",
-  "targets": {
-    "build": {
-      "executor": "@nx-plus/docusaurus:browser",
-      "options": {
-        "outputPath": "dist/apps/docs/tsrpc"
-      }
+    "name": "docs-tsrpc",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/docs/tsrpc/src",
+    "targets": {
+        "build": {
+            "executor": "@nx-plus/docusaurus:browser",
+            "options": {
+                "outputPath": "dist/apps/docs/tsrpc"
+            }
+        },
+        "serve": {
+            "executor": "@nx-plus/docusaurus:dev-server",
+            "options": {
+                "port": 3000
+            }
+        }
     },
-    "serve": {
-      "executor": "@nx-plus/docusaurus:dev-server",
-      "options": {
-        "port": 3000
-      }
-    }
-  },
-  "tags": ["docs"]
+    "tags": ["docs"]
 }

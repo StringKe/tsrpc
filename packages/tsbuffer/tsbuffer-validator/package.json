@@ -1,5 +1,5 @@
 {
-  "name": "@ntsrpc/tsbuffer-validator",
-  "version": "0.0.1",
-  "type": "commonjs"
+    "name": "@ntsrpc/tsbuffer-validator",
+    "version": "0.0.1",
+    "type": "commonjs"
 }

@@ -1,6 +1,6 @@
 /** @internal */
 export const Config = {
     interface: {
-        maxExtendsNum: 9
-    }
+        maxExtendsNum: 9,
+    },
 }

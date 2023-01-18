@@ -1,7 +1,7 @@
-import { tsrpcTsrpc } from './tsrpc-tsrpc';
+import { tsrpcTsrpc } from './tsrpc-tsrpc'
 
 describe('tsrpcTsrpc', () => {
-  it('should work', () => {
-    expect(tsrpcTsrpc()).toEqual('tsrpc-tsrpc');
-  });
-});
+    it('should work', () => {
+        expect(tsrpcTsrpc()).toEqual('tsrpc-tsrpc')
+    })
+})

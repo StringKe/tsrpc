@@ -1,1 +1,1 @@
-export * from './lib/tsrpc-tsrpc';
+export * from './lib/tsrpc-tsrpc'

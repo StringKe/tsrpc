@@ -1,3 +1,3 @@
 export function tsrpcTsrpcCli(): string {
-  return 'tsrpc-tsrpc-cli';
+    return 'tsrpc-tsrpc-cli'
 }
