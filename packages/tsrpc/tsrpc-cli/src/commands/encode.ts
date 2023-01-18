@@ -45,7 +45,7 @@ export async function cmdEncode(options: CmdEncodeOptions) {
         }
     } else if (options.exp) {
         try {
-            inputValue = eval(`()=>(${options.exp})`)()
+            inputValue = eval(`() => (${options.exp})`)()
         } catch (e) {
             if (options.verbose) {
                 console.log('exp', options.exp)
