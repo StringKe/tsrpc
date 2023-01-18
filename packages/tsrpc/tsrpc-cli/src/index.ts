@@ -1,1 +1,2 @@
-export * from './lib/tsrpc-tsrpc-cli'
+export * from './models/CodeTemplate'
+export * from './models/TsrpcConfig'
