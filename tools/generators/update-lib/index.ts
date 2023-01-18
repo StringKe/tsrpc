@@ -7,8 +7,7 @@ import {
 } from '@nrwl/devkit'
 
 const registry = [
-    ['npm', 'ntsrpc', 'https://registry.npmjs.org/'],
-    ['github', 'stringke', 'https://npm.pkg.github.com/'],
+    ['npm', 'ntsrpc', 'https://registry.npmjs.org/', 'public'], // ['github', 'stringke', 'https://npm.pkg.github.com/'],
 ]
 
 export default async function (tree: Tree, schema: any) {
@@ -22,10 +21,6 @@ export default async function (tree: Tree, schema: any) {
             const sourceRoot = project.root
 
             if (!sourceRoot.startsWith('packages/tools')) {
-                if ('publish' in project.targets) {
-                    delete project.targets['publish']
-                }
-
                 let buildTarget = project.targets.build
                 if (buildTarget.executor === '@nrwl/rollup:rollup') {
                     buildTarget = {
@@ -45,30 +40,32 @@ export default async function (tree: Tree, schema: any) {
                     } as TargetConfiguration
                 }
                 project.targets.build = buildTarget
-
-                const targets: string[] = []
-                registry.forEach((item) => {
-                    const [name, scope, url] = item
-                    const targetName = `publish-${name}`
-                    project.targets[targetName] = {
-                        executor: '@ntsrpc/npm-deploy:deploy',
-                        options: {
-                            access: 'restricted',
-                            registry: url,
-                            replaceScope: scope,
-                        },
-                    }
-                    targets.push(targetName)
-                })
-
-                project.targets['publish'] = {
-                    executor: '@nrwl/workspace:run-commands',
+            }
+            if ('publish' in project.targets) {
+                delete project.targets['publish']
+            }
+            const targets: string[] = []
+            registry.forEach((item) => {
+                const [name, scope, url, access = 'public'] = item
+                const targetName = `publish-${name}`
+                project.targets[targetName] = {
+                    executor: '@ntsrpc/npm-deploy:deploy',
                     options: {
-                        commands: targets.map(
-                            (target) => `nx run ${project.name}:${target}`,
-                        ),
+                        access: access,
+                        registry: url,
+                        replaceScope: scope,
                     },
                 }
+                targets.push(targetName)
+            })
+
+            project.targets['publish'] = {
+                executor: '@nrwl/workspace:run-commands',
+                options: {
+                    commands: targets.map(
+                        (target) => `nx run ${project.name}:${target}`,
+                    ),
+                },
             }
         }
 

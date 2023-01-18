@@ -47,7 +47,7 @@
     "publish-npm": {
       "executor": "@ntsrpc/npm-deploy:deploy",
       "options": {
-        "access": "restricted",
+        "access": "public",
         "registry": "https://registry.npmjs.org/",
         "replaceScope": "ntsrpc"
       }
@@ -64,8 +64,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "nx run tsrpc-tsrpc-cli:publish-npm",
-          "nx run tsrpc-tsrpc-cli:publish-github"
+          "nx run tsrpc-tsrpc-cli:publish-npm"
         ]
       }
     }

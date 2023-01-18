@@ -9,10 +9,6 @@ import {
 } from '../utils'
 import { setPackageName } from '../utils/set-package-name'
 
-
-
-
-
 export async function run(dir: string, options: DeployExecutorOptions) {
     try {
         options = prepareOptions(options)

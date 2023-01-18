@@ -63,15 +63,15 @@
       }
     },
     "publish-npm": {
-      "executor": "@ntsrpc/deploy-npm:deploy",
+      "executor": "@ntsrpc/npm-deploy:deploy",
       "options": {
-        "access": "restricted",
+        "access": "public",
         "registry": "https://registry.npmjs.org/",
         "replaceScope": "ntsrpc"
       }
     },
     "publish-github": {
-      "executor": "@ntsrpc/deploy-npm:deploy",
+      "executor": "@ntsrpc/npm-deploy:deploy",
       "options": {
         "access": "restricted",
         "registry": "https://npm.pkg.github.com/",
@@ -82,8 +82,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "nx run tools-npm-deploy:publish-npm",
-          "nx run tools-npm-deploy:publish-github"
+          "nx run tools-npm-deploy:publish-npm"
         ]
       }
     }
