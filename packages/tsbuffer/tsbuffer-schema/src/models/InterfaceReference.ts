@@ -4,10 +4,6 @@ import { PartialTypeSchema } from '../schemas/PartialTypeSchema'
 import { PickTypeSchema } from '../schemas/PickTypeSchema'
 import { TypeReference } from './TypeReference'
 
-
-
-
-
 export type InterfaceReference =
     | TypeReference
     | PickTypeSchema

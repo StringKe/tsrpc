@@ -4,10 +4,6 @@ import { TsrpcConfig } from '../models/TsrpcConfig'
 import { error } from '../models/util'
 import { fillAllPtlAndMsgs } from './dev'
 
-
-
-
-
 export type CmdProtoOptions =
     | {
           /** 默认当前文件夹 */

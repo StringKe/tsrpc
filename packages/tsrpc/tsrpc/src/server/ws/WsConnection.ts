@@ -16,10 +16,6 @@ import { ApiCallWs } from './ApiCallWs'
 import { MsgCallWs } from './MsgCallWs'
 import { WsServer } from './WsServer'
 
-
-
-
-
 export interface WsConnectionOptions<ServiceType extends BaseServiceType>
     extends BaseConnectionOptions<ServiceType> {
     server: WsServer<ServiceType>

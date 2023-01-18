@@ -1,43 +1,43 @@
 {
-  "name": "workspace",
-  "$schema": "node_modules/nx/schemas/project-schema.json",
-  "targets": {
-    "version": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "syncVersions": true,
-        "preset": "conventional",
-        "postTargets": [],
-        "releaseAs": "patch"
-      }
-    },
-    "version-major": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "syncVersions": true,
-        "preset": "conventional",
-        "postTargets": [],
-        "releaseAs": "major"
-      }
-    },
-    "version-minor": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "syncVersions": true,
-        "preset": "conventional",
-        "postTargets": [],
-        "releaseAs": "minor"
-      }
-    },
-    "prod": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "pnpm nx affected --target build --all",
-          "pnpm nx affected --target publish --all --exclude=workspace"
-        ],
-        "parallel": false
-      }
+    "name": "workspace",
+    "$schema": "node_modules/nx/schemas/project-schema.json",
+    "targets": {
+        "version": {
+            "executor": "@jscutlery/semver:version",
+            "options": {
+                "syncVersions": true,
+                "preset": "conventional",
+                "postTargets": [],
+                "releaseAs": "patch"
+            }
+        },
+        "version-major": {
+            "executor": "@jscutlery/semver:version",
+            "options": {
+                "syncVersions": true,
+                "preset": "conventional",
+                "postTargets": [],
+                "releaseAs": "major"
+            }
+        },
+        "version-minor": {
+            "executor": "@jscutlery/semver:version",
+            "options": {
+                "syncVersions": true,
+                "preset": "conventional",
+                "postTargets": [],
+                "releaseAs": "minor"
+            }
+        },
+        "prod": {
+            "executor": "nx:run-commands",
+            "options": {
+                "commands": [
+                    "pnpm nx affected --target build --all",
+                    "pnpm nx affected --target publish --all --exclude=workspace"
+                ],
+                "parallel": false
+            }
+        }
     }
-  }
 }

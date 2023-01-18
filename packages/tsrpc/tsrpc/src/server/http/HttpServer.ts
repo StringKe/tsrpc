@@ -1,24 +1,19 @@
-import * as http from 'http';
-import https from 'https';
+import * as http from 'http'
+import https from 'https'
 
+import { sumBy } from 'lodash'
 
+import { BaseServiceType, ServiceProto } from '@ntsrpc/tsrpc-proto'
 
-import { sumBy } from 'lodash';
-
-
-
-import { BaseServiceType, ServiceProto } from '@ntsrpc/tsrpc-proto';
-
-
-
-import { HttpUtil } from '../../models/HttpUtil';
-import { TSRPC_VERSION } from '../../models/version';
-import { BaseServer, BaseServerOptions, defaultBaseServerOptions, ServerStatus } from '../base/BaseServer';
-import { HttpConnection } from './HttpConnection';
-
-
-
-
+import { HttpUtil } from '../../models/HttpUtil'
+import { TSRPC_VERSION } from '../../models/version'
+import {
+    BaseServer,
+    BaseServerOptions,
+    defaultBaseServerOptions,
+    ServerStatus,
+} from '../base/BaseServer'
+import { HttpConnection } from './HttpConnection'
 
 /**
  * TSRPC Server, based on HTTP connection.

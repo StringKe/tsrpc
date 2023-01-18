@@ -1,29 +1,40 @@
-import * as path from 'path';
+import * as path from 'path'
 
+import chalk from 'chalk'
 
+import { TSBuffer } from '@ntsrpc/tsbuffer'
+import {
+    Counter,
+    Flow,
+    getCustomObjectIdTypes,
+    MsgHandlerManager,
+    MsgService,
+    ParsedServerInput,
+    ServiceMap,
+    ServiceMapUtil,
+    TransportDataUtil,
+} from '@ntsrpc/tsrpc-base-client'
+import {
+    ApiReturn,
+    ApiServiceDef,
+    BaseServiceType,
+    Logger,
+    LogLevel,
+    ServerInputData,
+    ServiceProto,
+    setLogLevel,
+    TsrpcError,
+    TsrpcErrorType,
+} from '@ntsrpc/tsrpc-proto'
 
-import chalk from 'chalk';
-
-
-
-import { TSBuffer } from '@ntsrpc/tsbuffer';
-import { Counter, Flow, getCustomObjectIdTypes, MsgHandlerManager, MsgService, ParsedServerInput, ServiceMap, ServiceMapUtil, TransportDataUtil } from '@ntsrpc/tsrpc-base-client';
-import { ApiReturn, ApiServiceDef, BaseServiceType, Logger, LogLevel, ServerInputData, ServiceProto, setLogLevel, TsrpcError, TsrpcErrorType } from '@ntsrpc/tsrpc-proto';
-
-
-
-import { getClassObjectId } from '../../models/getClassObjectId';
-import { HttpConnection } from '../http/HttpConnection';
-import { ApiCallInner } from '../inner/ApiCallInner';
-import { InnerConnection } from '../inner/InnerConnection';
-import { TerminalColorLogger } from '../models/TerminalColorLogger';
-import { ApiCall } from './ApiCall';
-import { BaseConnection } from './BaseConnection';
-import { MsgCall } from './MsgCall';
-
-
-
-
+import { getClassObjectId } from '../../models/getClassObjectId'
+import { HttpConnection } from '../http/HttpConnection'
+import { ApiCallInner } from '../inner/ApiCallInner'
+import { InnerConnection } from '../inner/InnerConnection'
+import { TerminalColorLogger } from '../models/TerminalColorLogger'
+import { ApiCall } from './ApiCall'
+import { BaseConnection } from './BaseConnection'
+import { MsgCall } from './MsgCall'
 
 /**
  * Abstract base class for TSRPC Server.
@@ -178,8 +189,7 @@ export abstract class BaseServer<
 
         this.tsbuffer = new TSBuffer(
             {
-                ...proto.types,
-                // Support mongodb/ObjectId
+                ...proto.types, // Support mongodb/ObjectId
                 ...getCustomObjectIdTypes(getClassObjectId()),
             },
             {
@@ -301,7 +311,10 @@ export abstract class BaseServer<
         // @deprecated preRecvBuffer
         if (data instanceof Uint8Array) {
             const preBuf = await this.flows.preRecvBufferFlow.exec(
-                { conn: conn, buf: data },
+                {
+                    conn: conn,
+                    buf: data,
+                },
                 conn.logger,
             )
             if (!preBuf) {
@@ -934,8 +947,7 @@ export abstract class BaseServer<
                 call.service.name,
                 call.logger,
                 call,
-            ) ?? []),
-            // Server Handlers
+            ) ?? []), // Server Handlers
             this._msgHandlers.forEachHandler(
                 call.service.name,
                 call.logger,

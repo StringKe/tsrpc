@@ -2,10 +2,6 @@ import { remove } from 'lodash'
 
 import { Logger, TsrpcError } from '@ntsrpc/tsrpc-proto'
 
-
-
-
-
 /**
  * @returns
  * `T` represents succ & continue,

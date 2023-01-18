@@ -3,10 +3,6 @@ import chalk from 'chalk'
 import { Logger } from '@ntsrpc/tsrpc-proto'
 import { dateFormat } from '@ntsrpc/utils'
 
-
-
-
-
 export interface TerminalColorLoggerOptions {
     /**
      * Process ID prefix

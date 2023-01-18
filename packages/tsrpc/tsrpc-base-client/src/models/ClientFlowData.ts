@@ -2,10 +2,6 @@ import { ApiReturn, BaseServiceType } from '@ntsrpc/tsrpc-proto'
 
 import { TransportOptions } from './TransportOptions'
 
-
-
-
-
 export type CallApiFlowData<ServiceType extends BaseServiceType> = {
     [K in keyof ServiceType['api']]: {
         apiName: K & string

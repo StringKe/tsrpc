@@ -12,10 +12,6 @@ import { error } from '../models/util'
 import { genApiFilesByProto } from './api'
 import { syncByConfig } from './sync'
 
-
-
-
-
 export type CmdBuildOptions = {
     config?: TsrpcConfig
 }

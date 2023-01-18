@@ -1,19 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { merge } from 'lodash';
+import { merge } from 'lodash'
 
+import {
+    CustomTypeSchema,
+    TSBufferProto,
+    TSBufferSchema,
+} from '@ntsrpc/tsbuffer-schema'
+import { TSBufferValidator } from '@ntsrpc/tsbuffer-validator'
 
-
-import { CustomTypeSchema, TSBufferProto, TSBufferSchema } from '@ntsrpc/tsbuffer-schema';
-import { TSBufferValidator } from '@ntsrpc/tsbuffer-validator';
-
-
-
-import { Decoder } from '../decoder/Decoder';
-import { Encoder } from '../encoder/Encoder';
-
-
-
-
+import { Decoder } from '../decoder/Decoder'
+import { Encoder } from '../encoder/Encoder'
 
 /** @public */
 export interface TSBufferOptions {

@@ -3,10 +3,6 @@ import { TSBufferSchema } from '@ntsrpc/tsbuffer-schema'
 import { ErrorMsg, ErrorType } from './ErrorMsg'
 import { ValidateOutput } from './types'
 
-
-
-
-
 /** @internal */
 export interface ValidateResultSucc {
     isSucc: true

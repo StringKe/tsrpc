@@ -1,10 +1,6 @@
 import { SchemaType, TSBufferSchema } from '@ntsrpc/tsbuffer-schema'
 import { TSBufferValidator } from '@ntsrpc/tsbuffer-validator'
 
-
-
-
-
 export class CoderUtil {
     static isJsonCompatible(
         schema: TSBufferSchema,

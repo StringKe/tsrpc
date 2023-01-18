@@ -2,10 +2,6 @@ import path from 'path'
 
 import { ApiTemplate, MsgTemplate, PtlTemplate } from './TsrpcConfig'
 
-
-
-
-
 /**
  * 用于 `tsrpc.config.ts` 的代码模板
  * @public

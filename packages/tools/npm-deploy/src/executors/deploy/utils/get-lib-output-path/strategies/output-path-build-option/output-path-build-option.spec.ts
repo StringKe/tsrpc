@@ -4,10 +4,6 @@ import { mockProjectRoot } from '../../../../../../__mocks__/generators'
 import { UnapplicableStrategyError } from '../shared'
 import { outputPathOptionStrategy } from './output-path-build-option'
 
-
-
-
-
 describe('outputPathOptionStrategy', () => {
     const projectRoot = mockProjectRoot
 

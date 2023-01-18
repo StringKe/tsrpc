@@ -2,10 +2,6 @@ import { spawn } from 'child_process'
 
 import { logger } from '@nrwl/devkit'
 
-
-
-
-
 export function spawnAsync(
     mainProgram: string,
     programArgs?: string[],

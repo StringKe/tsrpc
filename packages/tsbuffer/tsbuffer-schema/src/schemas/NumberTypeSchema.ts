@@ -1,9 +1,5 @@
 import { BaseSchema } from '../BaseSchema'
 
-
-
-
-
 /**
  * Primitive `number` type, with specific scalar type (like `int`, `uint`)
  *

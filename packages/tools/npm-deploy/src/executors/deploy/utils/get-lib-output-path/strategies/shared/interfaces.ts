@@ -1,10 +1,6 @@
 import { DeployExecutorOptions } from '../../../../schema'
 import { IBuildOptions } from '../../shared'
 
-
-
-
-
 export type IStrategy = {
     name: string
     isStrategyApplicable: (

@@ -1,9 +1,5 @@
 import { BaseSchema } from '../BaseSchema'
 
-
-
-
-
 /**
  * Primitive `string` type
  */

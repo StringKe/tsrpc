@@ -1,5 +1,5 @@
 {
-  "name": "@ntsrpc/utils",
-  "version": "0.1.1",
-  "type": "commonjs"
+    "name": "@ntsrpc/utils",
+    "version": "0.1.1",
+    "type": "commonjs"
 }

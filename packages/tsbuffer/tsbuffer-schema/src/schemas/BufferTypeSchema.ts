@@ -1,9 +1,5 @@
 import { BaseSchema } from '../BaseSchema'
 
-
-
-
-
 /**
  * Buffer type, include `ArrayBuffer` and typed arrays (e.g. `Uint8Array`, `Int32Array`...).
  *

@@ -3,10 +3,6 @@ import { ApiReturn, BaseServiceType } from '@ntsrpc/tsrpc-proto'
 import { ApiCall, ApiCallOptions } from '../base/ApiCall'
 import { InnerConnection } from './InnerConnection'
 
-
-
-
-
 export interface ApiCallInnerOptions<Req, ServiceType extends BaseServiceType>
     extends ApiCallOptions<Req, ServiceType> {
     conn: InnerConnection<ServiceType>

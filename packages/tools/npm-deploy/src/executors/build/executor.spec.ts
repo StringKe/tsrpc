@@ -1,10 +1,6 @@
 import executor from './executor'
 import { BuildExecutorSchema } from './schema'
 
-
-
-
-
 const options: BuildExecutorSchema = {}
 
 describe('Build Executor', () => {

@@ -2,10 +2,6 @@ import { int } from '@ntsrpc/tsbuffer-schema'
 
 import { TsrpcErrorData, TsrpcErrorType } from './TransportData'
 
-
-
-
-
 /**
  * A unified Error that returned by TSRPC server or client
  *

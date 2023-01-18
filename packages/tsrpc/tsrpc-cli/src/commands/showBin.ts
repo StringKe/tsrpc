@@ -7,10 +7,6 @@ import chalk from 'chalk'
 import { i18n } from '../i18n/i18n'
 import { buf2Hex } from '../models/util'
 
-
-
-
-
 export interface CmdShowBinOptions {
     file: string
     verbose: boolean | undefined

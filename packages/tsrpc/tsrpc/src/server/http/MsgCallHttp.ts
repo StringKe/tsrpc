@@ -3,10 +3,6 @@ import { BaseServiceType } from '@ntsrpc/tsrpc-proto'
 import { MsgCall, MsgCallOptions } from '../base/MsgCall'
 import { HttpConnection } from './HttpConnection'
 
-
-
-
-
 export interface MsgCallHttpOptions<Msg, ServiceType extends BaseServiceType>
     extends MsgCallOptions<Msg, ServiceType> {
     conn: HttpConnection<ServiceType>

@@ -4,10 +4,6 @@ import { DeployExecutorOptions } from '../../../../schema'
 import { IBuildOptions } from '../../shared'
 import { IStrategy, UnapplicableStrategyError } from '../shared'
 
-
-
-
-
 /**
  * This strategy is the common one across Nx Official Plugins.
  * We get the dist path from the option `outputPath` from the `build` target's options.

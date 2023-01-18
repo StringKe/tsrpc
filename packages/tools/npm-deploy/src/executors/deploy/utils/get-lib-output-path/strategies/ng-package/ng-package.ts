@@ -7,10 +7,6 @@ import { readFileAsync } from '../../../file-utils'
 import { IBuildOptions } from '../../shared'
 import { IStrategy, UnapplicableStrategyError } from '../shared'
 
-
-
-
-
 /**
  * The strategy applied for Angular Libraries.
  * Angular libraries have a file called `ng-package.json`.

@@ -12,10 +12,6 @@ import { ApiCall } from './ApiCall'
 import { BaseServer, MsgHandler } from './BaseServer'
 import { MsgCall } from './MsgCall'
 
-
-
-
-
 export interface BaseConnectionOptions<
     ServiceType extends BaseServiceType = any,
 > {

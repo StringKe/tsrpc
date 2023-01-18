@@ -1,5 +1,5 @@
 {
-  "name": "@ntsrpc/tsbuffer-schema",
-  "version": "0.1.1",
-  "type": "commonjs"
+    "name": "@ntsrpc/tsbuffer-schema",
+    "version": "0.1.1",
+    "type": "commonjs"
 }

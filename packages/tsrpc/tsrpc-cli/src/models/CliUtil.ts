@@ -1,10 +1,6 @@
 import chalk from 'chalk'
 import ora from 'ora'
 
-
-
-
-
 export class CliUtil {
     static spinner = ora('')
     static currentDoingText: string | undefined

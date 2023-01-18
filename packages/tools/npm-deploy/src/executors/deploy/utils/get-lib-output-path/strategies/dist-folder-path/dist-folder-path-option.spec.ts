@@ -4,10 +4,6 @@ import { mockProjectRoot } from '../../../../../../__mocks__/generators'
 import { UnapplicableStrategyError } from '../shared'
 import { customDistPathStrategy } from './dist-folder-path-option'
 
-
-
-
-
 describe('distFolderPathStrategy', () => {
     const projectRoot = mockProjectRoot
     const distFolderPath = path.join('my', 'custom-folder')

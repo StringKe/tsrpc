@@ -1,9 +1,5 @@
 import { TsrpcError } from './TsrpcError'
 
-
-
-
-
 /**
  * Successful by `call.succ()`
  */

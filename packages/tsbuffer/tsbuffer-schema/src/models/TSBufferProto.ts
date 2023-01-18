@@ -1,9 +1,5 @@
 import { TSBufferSchema } from './TSBufferSchema'
 
-
-
-
-
 /**
  * Collection of a group of `TSBufferSchema`
  */

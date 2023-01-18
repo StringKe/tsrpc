@@ -1,9 +1,5 @@
 import { BaseSchema } from '../BaseSchema'
 
-
-
-
-
 /**
  * TypeScript `enum` type
  *

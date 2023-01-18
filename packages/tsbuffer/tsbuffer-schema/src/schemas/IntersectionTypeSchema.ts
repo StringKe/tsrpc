@@ -1,10 +1,6 @@
 import { BaseSchema } from '../BaseSchema'
 import { TSBufferSchema } from '../models/TSBufferSchema'
 
-
-
-
-
 /**
  * TypeScript intersection type, like `A & B`
  *

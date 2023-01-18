@@ -2,10 +2,6 @@ import { LengthType } from '../models/IdBlockUtil'
 import { Utf8Coder } from '../models/Utf8Coder'
 import { Varint64 } from '../models/Varint64'
 
-
-
-
-
 export class BufferReader {
     private _pos = 0
     private _buf!: Uint8Array

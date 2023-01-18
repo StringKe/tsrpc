@@ -3,10 +3,6 @@ import { BaseServiceType } from '@ntsrpc/tsrpc-proto'
 import { MsgCall, MsgCallOptions } from '../base/MsgCall'
 import { WsConnection } from './WsConnection'
 
-
-
-
-
 export interface MsgCallWsOptions<Msg, ServiceType extends BaseServiceType>
     extends MsgCallOptions<Msg, ServiceType> {
     conn: WsConnection<ServiceType>

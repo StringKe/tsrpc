@@ -4,10 +4,6 @@ import { TsrpcError } from '@ntsrpc/tsrpc-proto'
 import { MiniappObj, SocketTask } from '../models/MiniappObj'
 import { WsClient } from './WsClient'
 
-
-
-
-
 export class WebSocketProxy implements IWebSocketProxy {
     options!: IWebSocketProxy['options']
     miniappObj!: MiniappObj

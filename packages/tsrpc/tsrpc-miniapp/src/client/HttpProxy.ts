@@ -3,10 +3,6 @@ import { TsrpcError } from '@ntsrpc/tsrpc-proto'
 
 import { MiniappObj } from '../models/MiniappObj'
 
-
-
-
-
 export class HttpProxy implements IHttpProxy {
     miniappObj?: MiniappObj
 

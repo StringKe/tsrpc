@@ -2,10 +2,6 @@ import { remove } from 'lodash'
 
 import { Logger } from '@ntsrpc/tsrpc-proto'
 
-
-
-
-
 /**
  * A manager for TSRPC receiving messages
  */

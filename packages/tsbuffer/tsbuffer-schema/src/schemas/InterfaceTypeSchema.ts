@@ -2,10 +2,6 @@ import { BaseSchema } from '../BaseSchema'
 import { InterfaceReference } from '../models/InterfaceReference'
 import { TSBufferSchema } from '../models/TSBufferSchema'
 
-
-
-
-
 /**
  * TypeScript `interface`
  *

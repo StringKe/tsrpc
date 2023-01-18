@@ -2,10 +2,6 @@ import * as path from 'path'
 
 import * as fs from './file-utils'
 
-
-
-
-
 export async function setPackageVersion(dir: string, packageVersion: string) {
     const packageContent: string = await fs.readFileAsync(
         path.join(dir, 'package.json'),

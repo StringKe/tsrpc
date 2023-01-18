@@ -10,10 +10,6 @@ import { i18n } from '../i18n/i18n'
 import { ProtoUtil } from '../models/ProtoUtil'
 import { colorJson, formatStr, hex2Bin } from '../models/util'
 
-
-
-
-
 export interface CmdDecodeOptions {
     protoPath: string | undefined
     schemaId: string | undefined

@@ -3,10 +3,6 @@ import WebSocket from 'ws'
 import { IWebSocketProxy } from '@ntsrpc/tsrpc-base-client'
 import { TsrpcError } from '@ntsrpc/tsrpc-proto'
 
-
-
-
-
 /**
  * @internal
  */

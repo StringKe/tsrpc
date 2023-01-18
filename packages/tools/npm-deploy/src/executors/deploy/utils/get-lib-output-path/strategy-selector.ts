@@ -3,10 +3,6 @@ import { IBuildOptions } from './shared'
 import * as strategies from './strategies'
 import { IStrategy } from './strategies/shared'
 
-
-
-
-
 export async function getLibOutPutPath(
     projectRoot: string,
     buildOptions: IBuildOptions,

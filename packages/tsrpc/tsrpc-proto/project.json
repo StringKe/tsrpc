@@ -1,75 +1,60 @@
 {
-  "name": "tsrpc-tsrpc-proto",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/tsrpc/tsrpc-proto/src",
-  "projectType": "library",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/rollup:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "options": {
-        "project": "packages/tsrpc/tsrpc-proto/package.json",
-        "outputPath": "dist/tsrpc-tsrpc-proto/types",
-        "main": "packages/tsrpc/tsrpc-proto/src/index.ts",
-        "tsConfig": "packages/tsrpc/tsrpc-proto/tsconfig.lib.json",
-        "format": [
-          "esm",
-          "cjs"
-        ],
-        "generateExportsField": true,
-        "buildableProjectDepsInPackageJsonType": "dependencies",
-        "assets": []
-      }
+    "name": "tsrpc-tsrpc-proto",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/tsrpc/tsrpc-proto/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/rollup:rollup",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "project": "packages/tsrpc/tsrpc-proto/package.json",
+                "outputPath": "dist/tsrpc-tsrpc-proto/types",
+                "main": "packages/tsrpc/tsrpc-proto/src/index.ts",
+                "tsConfig": "packages/tsrpc/tsrpc-proto/tsconfig.lib.json",
+                "format": ["esm", "cjs"],
+                "generateExportsField": true,
+                "buildableProjectDepsInPackageJsonType": "dependencies",
+                "assets": []
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/tsrpc/tsrpc-proto/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/tsrpc/tsrpc-proto/jest.config.ts",
+                "passWithNoTests": true
+            }
+        },
+        "publish-npm": {
+            "executor": "@ntsrpc/npm-deploy:deploy",
+            "options": {
+                "access": "public",
+                "registry": "https://registry.npmjs.org/",
+                "replaceScope": "ntsrpc"
+            }
+        },
+        "publish-github": {
+            "executor": "@ntsrpc/npm-deploy:deploy",
+            "options": {
+                "access": "restricted",
+                "registry": "https://npm.pkg.github.com/",
+                "replaceScope": "stringke"
+            }
+        },
+        "publish": {
+            "executor": "@nrwl/workspace:run-commands",
+            "options": {
+                "commands": ["nx run tsrpc-tsrpc-proto:publish-npm"]
+            }
+        }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "packages/tsrpc/tsrpc-proto/**/*.ts"
-        ]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
-      "options": {
-        "jestConfig": "packages/tsrpc/tsrpc-proto/jest.config.ts",
-        "passWithNoTests": true
-      }
-    },
-    "publish-npm": {
-      "executor": "@ntsrpc/npm-deploy:deploy",
-      "options": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/",
-        "replaceScope": "ntsrpc"
-      }
-    },
-    "publish-github": {
-      "executor": "@ntsrpc/npm-deploy:deploy",
-      "options": {
-        "access": "restricted",
-        "registry": "https://npm.pkg.github.com/",
-        "replaceScope": "stringke"
-      }
-    },
-    "publish": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "commands": [
-          "nx run tsrpc-tsrpc-proto:publish-npm"
-        ]
-      }
-    }
-  },
-  "tags": [
-    "tsrpc"
-  ]
+    "tags": ["tsrpc"]
 }

@@ -5,10 +5,6 @@ import {
 } from '@ntsrpc/tsbuffer-schema'
 import { ProtoHelper } from '@ntsrpc/tsbuffer-validator'
 
-
-
-
-
 /** @internal */
 export class IdBlockUtil {
     static getPayloadLengthInfo(

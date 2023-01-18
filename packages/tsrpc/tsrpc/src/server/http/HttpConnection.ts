@@ -16,10 +16,6 @@ import { ApiCallHttp } from './ApiCallHttp'
 import { HttpServer } from './HttpServer'
 import { MsgCallHttp } from './MsgCallHttp'
 
-
-
-
-
 export interface HttpConnectionOptions<ServiceType extends BaseServiceType>
     extends BaseConnectionOptions<ServiceType> {
     server: HttpServer<ServiceType>

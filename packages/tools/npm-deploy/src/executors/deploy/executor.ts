@@ -4,10 +4,6 @@ import deploy from './actions'
 import * as engine from './engine/engine'
 import { DeployExecutorOptions } from './schema'
 
-
-
-
-
 export default async function runExecutor(
     options: DeployExecutorOptions,
     context: ExecutorContext,

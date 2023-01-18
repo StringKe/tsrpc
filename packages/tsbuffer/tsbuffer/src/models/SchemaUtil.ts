@@ -1,9 +1,5 @@
 import { SchemaType, TSBufferSchema } from '@ntsrpc/tsbuffer-schema'
 
-
-
-
-
 /** @internal */
 export class SchemaUtil {
     /** type类型是否能编码为该literal */

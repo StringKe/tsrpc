@@ -4,10 +4,6 @@ import { DeployExecutorOptions } from '../../../../schema'
 import { IBuildOptions } from '../../shared'
 import { IStrategy, UnapplicableStrategyError } from '../shared'
 
-
-
-
-
 /**
  * Use this strategy when we don't have a strategy to locate the dist folder for that library.
  *

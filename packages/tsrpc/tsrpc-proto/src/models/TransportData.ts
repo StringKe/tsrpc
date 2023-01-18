@@ -1,9 +1,5 @@
 import { int, uint } from '@ntsrpc/tsbuffer-schema'
 
-
-
-
-
 /**
  * Basic transport data unit,
  * which represents data that server received, which should be sent by `client.callApi` or `client.sendMsg`.

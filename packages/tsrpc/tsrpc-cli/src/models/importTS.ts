@@ -7,10 +7,6 @@ import { i18n } from '../i18n/i18n'
 import { TsrpcConfig } from './TsrpcConfig'
 import { error } from './util'
 
-
-
-
-
 const watchingFiles: {
     [path: string]: 1
 } = {}

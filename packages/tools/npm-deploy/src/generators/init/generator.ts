@@ -8,10 +8,6 @@ import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-ser
 import type { InitGeneratorOptions } from './schema'
 import { addDependencies, normalizeOptions } from './utils'
 
-
-
-
-
 export async function initGenerator(
     tree: Tree,
     rawOptions: InitGeneratorOptions,

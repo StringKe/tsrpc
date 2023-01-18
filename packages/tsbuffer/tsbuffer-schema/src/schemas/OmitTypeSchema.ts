@@ -4,10 +4,6 @@ import { InterfaceTypeSchema } from './InterfaceTypeSchema'
 import { IntersectionTypeSchema } from './IntersectionTypeSchema'
 import { UnionTypeSchema } from './UnionTypeSchema'
 
-
-
-
-
 /**
  * TypeScript `Omit` type,
  * represents omit some properties from a interface.

@@ -9,10 +9,6 @@ import { i18n } from '../i18n/i18n'
 import { ProtoUtil } from '../models/ProtoUtil'
 import { error } from '../models/util'
 
-
-
-
-
 export interface CmdValidateOptions {
     proto: string | undefined
     schemaId: string | undefined
