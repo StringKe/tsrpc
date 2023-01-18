@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/StringKe/tsrpc/compare/v0.1.0...v0.1.1) (2023-01-18)
+
+
+### Bug Fixes
+
+* docs build and packages build ([032a197](https://github.com/StringKe/tsrpc/commit/032a19759160ef3040646bc8e11c2ca41e88324d))
+
 ## 0.1.0 (2023-01-18)
 
 
