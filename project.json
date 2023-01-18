@@ -34,8 +34,7 @@
       "options": {
         "commands": [
           "pnpm nx affected --target build --all",
-          "pnpm nx affected --target publish --all --exclude=workspace",
-          "pnpm nx run workspace:container"
+          "pnpm nx affected --target publish --all --exclude=workspace"
         ],
         "parallel": false
       }
