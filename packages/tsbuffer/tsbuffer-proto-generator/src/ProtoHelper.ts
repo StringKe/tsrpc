@@ -15,6 +15,7 @@ import {
     TypeReference,
     UnionTypeSchema,
 } from '@ntsrpc/tsbuffer-schema'
+import { binaryInsert } from '@ntsrpc/utils'
 
 export class ProtoHelper {
     readonly proto: TSBufferProto
@@ -278,12 +279,12 @@ export class ProtoHelper {
             if (this.isInterface(schema)) {
                 const flat = this.getFlatInterfaceSchema(schema)
                 flat.properties.forEach((v) => {
-                    unionProperties.binaryInsert(v.name, true)
+                    binaryInsert(unionProperties, v.name, true)
                 })
 
                 if (flat.indexSignature) {
                     const key = `[[${flat.indexSignature.keyType}]]`
-                    unionProperties.binaryInsert(key, true)
+                    binaryInsert(unionProperties, key, true)
                 }
             }
             // Intersection/Union 递归合并unionProperties

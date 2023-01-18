@@ -16,6 +16,7 @@ import {
     TypeReference,
     UnionTypeSchema,
 } from '@ntsrpc/tsbuffer-schema'
+import { binarySearch } from '@ntsrpc/utils'
 
 import { Logger } from './Logger'
 
@@ -397,7 +398,7 @@ export class AstParser {
         if (ts.isTypeReferenceNode(node)) {
             const ref = this._getReferenceTypeSchema(node.typeName, imports)
             if (
-                (BUFFER_TYPES as unknown as string[]).binarySearch(ref.target) >
+                binarySearch(BUFFER_TYPES as unknown as string[], ref.target) >
                 -1
             ) {
                 const output: BufferTypeSchema = {
@@ -442,7 +443,8 @@ export class AstParser {
         if (
             ts.isTypeReferenceNode(node) &&
             ts.isIdentifier(node.typeName) &&
-            (SCALAR_TYPES as unknown as string[]).binarySearch(
+            binarySearch(
+                SCALAR_TYPES as unknown as string[],
                 node.typeName.text,
             ) > -1
         ) {

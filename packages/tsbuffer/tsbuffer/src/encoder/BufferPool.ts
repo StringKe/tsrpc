@@ -1,6 +1,6 @@
 /** @internal */
 export class BufferPool {
-
-    getBuffer() { }
-
+    getBuffer() {
+        // nothing
+    }
 }

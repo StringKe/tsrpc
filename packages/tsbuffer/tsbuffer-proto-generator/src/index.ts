@@ -1,5 +1,3 @@
-import '@ntsrpc/utils/lib/ExtendNative'
-
 export {
     ProtoGenerator as TSBufferProtoGenerator,
     ProtoGeneratorOptions,

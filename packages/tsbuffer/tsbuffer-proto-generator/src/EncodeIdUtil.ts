@@ -1,5 +1,9 @@
 import {
-    EnumTypeSchema, InterfaceTypeSchema, IntersectionTypeSchema, TSBufferSchema, UnionTypeSchema,
+    EnumTypeSchema,
+    InterfaceTypeSchema,
+    IntersectionTypeSchema,
+    TSBufferSchema,
+    UnionTypeSchema,
 } from '@ntsrpc/tsbuffer-schema'
 import { TsCrypto } from '@ntsrpc/utils'
 
@@ -13,14 +17,19 @@ export class EncodeIdUtil {
      * @param compatible 需要向后兼容的结果集（新字段用新数字，旧字段ID不变）
      * @returns 返回的顺序必定与values传入的顺序相同
      */
-    static genEncodeIds(values: (string | number | object)[], compatible?: EncodeIdItem[]): EncodeIdItem[] {
+    static genEncodeIds(
+        values: (string | number | object)[],
+        compatible?: EncodeIdItem[],
+    ): EncodeIdItem[] {
         // 新元素的起始ID，有compatible则从其下一个开始，全新模式从0开始
         let nextId = 0
-        const existKeyId: { [key: string]: number } = compatible ? compatible.reduce((prev, next) => {
-            prev[next.key] = next.id
-            nextId = Math.max(nextId, next.id + 1)
-            return prev
-        }, {} as { [key: string]: number }) : {}
+        const existKeyId: { [key: string]: number } = compatible
+            ? compatible.reduce((prev, next) => {
+                  prev[next.key] = next.id
+                  nextId = Math.max(nextId, next.id + 1)
+                  return prev
+              }, {} as { [key: string]: number })
+            : {}
         const output: EncodeIdItem[] = []
         const keys = values.map((v) => this.getKey(v))
         for (const key of keys) {
@@ -30,8 +39,13 @@ export class EncodeIdUtil {
         }
 
         // 可优化节点>=32,4096
-        const uniqueKeyLength = keys.distinct().length
-        if ((nextId > 32 && uniqueKeyLength <= 32) || (nextId > 4096 && uniqueKeyLength <= 4096)) {
+        const uniqueKeyLength = keys.filter(
+            (v, i, arr) => arr.indexOf(v) === i,
+        ).length
+        if (
+            (nextId > 32 && uniqueKeyLength <= 32) ||
+            (nextId > 4096 && uniqueKeyLength <= 4096)
+        ) {
             this.onGenCanOptimized?.()
         }
 
@@ -44,21 +58,29 @@ export class EncodeIdUtil {
                 return schema.members.map((v) => '' + v.value)
             }
             case 'Interface': {
-                return schema.properties ? schema.properties.map((v) => v.name) : []
+                return schema.properties
+                    ? schema.properties.map((v) => v.name)
+                    : []
             }
             case 'Intersection':
             case 'Union':
-                return schema.members.map((v) => Crypto.md5(JSON.stringify(v.type)))
+                return schema.members.map((v) =>
+                    TsCrypto.md5(JSON.stringify(v.type)),
+                )
             default:
                 return []
         }
     }
 
     static getKey(value: string | number | object): string {
-        return typeof value === 'object' ? Crypto.md5(JSON.stringify(value)) : '' + value
+        return typeof value === 'object'
+            ? TsCrypto.md5(JSON.stringify(value))
+            : '' + value
     }
 
-    static getSchemaEncodeIds(schema?: TSBufferSchema): EncodeIdItem[] | undefined {
+    static getSchemaEncodeIds(
+        schema?: TSBufferSchema,
+    ): EncodeIdItem[] | undefined {
         if (!schema) {
             return undefined
         }
@@ -66,18 +88,23 @@ export class EncodeIdUtil {
         switch (schema.type) {
             case 'Enum': {
                 return schema.members.map((v) => ({
-                    key: EncodeIdUtil.getKey(v.value), id: v.id,
+                    key: EncodeIdUtil.getKey(v.value),
+                    id: v.id,
                 }))
             }
             case 'Interface': {
-                return schema.properties ? schema.properties.map((v) => ({
-                    key: EncodeIdUtil.getKey(v.name), id: v.id,
-                })) : undefined
+                return schema.properties
+                    ? schema.properties.map((v) => ({
+                          key: EncodeIdUtil.getKey(v.name),
+                          id: v.id,
+                      }))
+                    : undefined
             }
             case 'Intersection':
             case 'Union':
                 return schema.members.map((v) => ({
-                    key: TsCrypto.md5(JSON.stringify(v.type)), id: v.id,
+                    key: TsCrypto.md5(JSON.stringify(v.type)),
+                    id: v.id,
                 }))
             default:
                 return undefined

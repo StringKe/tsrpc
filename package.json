@@ -6,6 +6,7 @@
   "private": true,
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.1.0",
+    "@jest/globals": "^29.3.1",
     "@nrwl/eslint-plugin-nx": "15.5.2",
     "@nrwl/jest": "15.5.2",
     "@nrwl/js": "^15.5.2",

@@ -1,5 +1,3 @@
-import '@ntsrpc/utils/lib/ExtendNative'
-
 export { Base64Util } from './models/Base64Util'
 export {
     DecodeOptions,
