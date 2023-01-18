@@ -4,12 +4,17 @@ import { TsrpcError } from '@ntsrpc/tsrpc-proto'
 import { MiniappObj, SocketTask } from '../models/MiniappObj'
 import { WsClient } from './WsClient'
 
+
+
+
+
 export class WebSocketProxy implements IWebSocketProxy {
     options!: IWebSocketProxy['options']
     miniappObj!: MiniappObj
     client!: WsClient<any>
 
     private _ws?: SocketTask
+
     connect(server: string, protocols?: string[]): void {
         this._ws = this.miniappObj.connectSocket({
             ...this.client.options.connectSocketOptions,
@@ -38,6 +43,7 @@ export class WebSocketProxy implements IWebSocketProxy {
             }
         })
     }
+
     close(code?: number, reason?: string): void {
         this._ws?.close({
             code: code,
@@ -50,6 +56,7 @@ export class WebSocketProxy implements IWebSocketProxy {
         })
         this._ws = undefined
     }
+
     send(data: string | Uint8Array): Promise<{ err?: TsrpcError | undefined }> {
         let sendData: string | ArrayBuffer
         if (typeof data === 'string') {

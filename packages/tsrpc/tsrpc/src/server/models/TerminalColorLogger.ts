@@ -3,6 +3,10 @@ import chalk from 'chalk'
 import { Logger } from '@ntsrpc/tsrpc-proto'
 import { dateFormat } from '@ntsrpc/utils'
 
+
+
+
+
 export interface TerminalColorLoggerOptions {
     /**
      * Process ID prefix
@@ -60,12 +64,6 @@ export class TerminalColorLogger implements Logger {
         )
     }
 
-    private _time(): string {
-        return this.options.timeFormat
-            ? dateFormat(new Date(), this.options.timeFormat)
-            : ''
-    }
-
     error(...args: any[]) {
         console.error.call(
             console,
@@ -73,5 +71,11 @@ export class TerminalColorLogger implements Logger {
             chalk.red('[ERROR]'),
             ...args,
         )
+    }
+
+    private _time(): string {
+        return this.options.timeFormat
+            ? dateFormat(new Date(), this.options.timeFormat)
+            : ''
     }
 }

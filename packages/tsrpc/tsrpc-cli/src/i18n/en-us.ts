@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import chalk from 'chalk'
 
 export const i18nEnUs = {
     welcome: 'https://npmjs.com/tsrpc\nWelcome to TSRPC utilities V${version}',
@@ -88,14 +88,17 @@ Example：
     tsrpc-cli doc                            Generate API document
 `.trim(),
     errCmd: 'Error command, use "tsrpc-cli -h" to see more help info.',
-    missingParam: 'Missing parameter ${param}, use "tsrpc-cli -h" to see more help info.',
+    missingParam:
+        'Missing parameter ${param}, use "tsrpc-cli -h" to see more help info.',
     shouldBeDir: '${path} should be a directory',
     protoSucc: '✔ ServiceProto generated to: ${output}',
-    protoFailed: (output: string) => `⨯ Generate ServiceProto failed, please check if there is any TypeScript compile error : ${output}`,
+    protoFailed: (output: string) =>
+        `⨯ Generate ServiceProto failed, please check if there is any TypeScript compile error : ${output}`,
     fileNotExists: 'File not exists: ${file}',
     fileOpenError: 'Failed to open file: ${file}',
     jsParsedError: 'Failed to parse JS expression from: ${file}',
-    invalidProtoExt: '旧 ServiceProto 格式非法，仅支持 .ts 和 .json 文件: ${file}',
+    invalidProtoExt:
+        '旧 ServiceProto 格式非法，仅支持 .ts 和 .json 文件: ${file}',
     protoParsedError: 'Failed to parse old proto: ${file}',
     expParsedError: 'Invalid JS expression',
     or: 'or',
@@ -109,17 +112,22 @@ Example：
     error: ' ERROR ',
     success: ' SUCCESS ',
     helpGuide: 'Use "tsrpc-cli -h" to see more help info.',
-    compatibleError: 'Failed to keep compatible with old proto: \n\t|- ${innerError}',
-    canOptimizeByNew: (oldProtoPath: string) => `Redundancy in ServiceProto is detected, delete '${oldProtoPath}' manually to optimize this, but it would cause incompatibility between the latest and older protocol. `,
+    compatibleError:
+        'Failed to keep compatible with old proto: \n\t|- ${innerError}',
+    canOptimizeByNew: (oldProtoPath: string) =>
+        `Redundancy in ServiceProto is detected, delete '${oldProtoPath}' manually to optimize this, but it would cause incompatibility between the latest and older protocol. `,
     dirNotExists: 'Directory not exists: ${dir}',
     codeError: 'Build TypeScript failed, please fix code error',
-    ifUpdateProto: 'A protocol change is detected, do you need to regenerate ServiceProto?',
+    ifUpdateProto:
+        'A protocol change is detected, do you need to regenerate ServiceProto?',
     ifSyncNow: 'Execute "npm run sync" after generated successfully?',
-    syncFailed: 'Execute "npm run sync" failed, you can manually finish syncing.',
+    syncFailed:
+        'Execute "npm run sync" failed, you can manually finish syncing.',
     deleteConfirm: '${target}\nis existed already，delete it and continue?',
     canceled: 'CANCELED',
     confInvalid: 'Invalid TSRPC config file: ${path}',
-    missingConfigItem: (itemName: string) => `Missing '${itemName}' in config file`,
+    missingConfigItem: (itemName: string) =>
+        `Missing '${itemName}' in config file`,
     nothingSyncConf: `'sync' is not configurated in the config file`,
     syncedSucc: '✔ Synced successfully',
     allSyncedSucc: '✔ All Synced successfully',
@@ -129,7 +137,8 @@ Example：
     linkedSucc: '✔ Linked successfully',
     allLinkedSucc: '✔ All linked successfully',
     elevatingForLink: 'Asking for authorization to create symlink',
-    linkFailed: 'Authorization to create Symlink failed. Please select "Yes" in the authorization dialog: ',
+    linkFailed:
+        'Authorization to create Symlink failed. Please select "Yes" in the authorization dialog: ',
     linkRetry: 'Retry',
     linkJunction: 'Create Junction instead (Not recommended)',
 
@@ -143,11 +152,16 @@ Example：
     buildCopyFiles: `Copy Files`,
     buildSucc: 'Build Successfully!',
 
-    docOpenApiSucc: (path: string) => `OpenAPI generated successfully: ${chalk.cyan(path)}`,
-    docTsapiSucc: (path: string) => `TSAPI generated successfully: ${chalk.cyan(path)}`,
-    docMdSucc: (path: string) => `Markdown generated successfully: ${chalk.cyan(path)}`,
+    docOpenApiSucc: (path: string) =>
+        `OpenAPI generated successfully: ${chalk.cyan(path)}`,
+    docTsapiSucc: (path: string) =>
+        `TSAPI generated successfully: ${chalk.cyan(path)}`,
+    docMdSucc: (path: string) =>
+        `Markdown generated successfully: ${chalk.cyan(path)}`,
 
     fileAlreadyExists: (path: string) => `${path} already exists`,
-    npmNotInited: `package.json not exists，please run ${chalk.cyan('npm init')} first`,
+    npmNotInited: `package.json not exists，please run ${chalk.cyan(
+        'npm init',
+    )} first`,
     initSucc: (path: string) => `✔ Init successfully: ${path}`,
 }

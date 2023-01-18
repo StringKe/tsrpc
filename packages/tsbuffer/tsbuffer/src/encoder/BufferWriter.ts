@@ -3,6 +3,10 @@ import { sumBy } from 'lodash'
 import { Utf8Coder } from '../models/Utf8Coder'
 import { Varint64 } from '../models/Varint64'
 
+
+
+
+
 /**
  * 用Op来串联 next
  * Op包含 function next length

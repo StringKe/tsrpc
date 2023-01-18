@@ -12,6 +12,10 @@ import { ApiCall } from './ApiCall'
 import { BaseServer, MsgHandler } from './BaseServer'
 import { MsgCall } from './MsgCall'
 
+
+
+
+
 export interface BaseConnectionOptions<
     ServiceType extends BaseServiceType = any,
 > {
@@ -253,11 +257,6 @@ export abstract class BaseConnection<
         this._msgHandlers.removeHandler(msgName as string, handler)
     }
 
-    protected abstract doSendData(
-        data: string | Uint8Array | object,
-        call?: ApiCall,
-    ): Promise<{ isSucc: true } | { isSucc: false; errMsg: string }>
-
     /**
      * Remove all handlers from a message
      */
@@ -270,6 +269,11 @@ export abstract class BaseConnection<
         }
         this._msgHandlers.removeAllHandlers(msgName as string)
     }
+
+    protected abstract doSendData(
+        data: string | Uint8Array | object,
+        call?: ApiCall,
+    ): Promise<{ isSucc: true } | { isSucc: false; errMsg: string }>
 }
 
 export enum ConnectionStatus {

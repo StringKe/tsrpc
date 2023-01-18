@@ -1,41 +1,70 @@
 {
-    "name": "tsbuffer-tsbuffer",
-    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "packages/tsbuffer/tsbuffer/src",
-    "projectType": "library",
-    "targets": {
-        "build": {
-            "executor": "@nrwl/rollup:rollup",
-            "outputs": ["{options.outputPath}"],
-            "options": {
-                "outputPath": "dist/packages/tsbuffer/tsbuffer",
-                "main": "packages/tsbuffer/tsbuffer/src/index.ts",
-                "tsConfig": "packages/tsbuffer/tsbuffer/tsconfig.lib.json",
-                "assets": []
-            }
-        },
-        "publish": {
-            "executor": "nx:run-commands",
-            "options": {
-                "command": "node tools/scripts/publish.mjs tsbuffer-tsbuffer {args.ver} {args.tag}"
-            },
-            "dependsOn": ["build"]
-        },
-        "lint": {
-            "executor": "@nrwl/linter:eslint",
-            "outputs": ["{options.outputFile}"],
-            "options": {
-                "lintFilePatterns": ["packages/tsbuffer/tsbuffer/**/*.ts"]
-            }
-        },
-        "test": {
-            "executor": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-            "options": {
-                "jestConfig": "packages/tsbuffer/tsbuffer/jest.config.ts",
-                "passWithNoTests": true
-            }
-        }
+  "name": "tsbuffer-tsbuffer",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/tsbuffer/tsbuffer/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "project": "packages/tsbuffer/tsbuffer/package.json",
+      "outputPath": "dist/tsbuffer-tsbuffer/types",
+      "main": "packages/tsbuffer/tsbuffer/src/index.ts",
+      "tsConfig": "packages/tsbuffer/tsbuffer/tsconfig.lib.json",
+      "format": [
+        "esm",
+        "cjs"
+      ],
+      "generateExportsField": true,
+      "buildableProjectDepsInPackageJsonType": "dependencies",
+      "assets": []
     },
-    "tags": ["tsbuffer"]
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/tsbuffer/tsbuffer/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/tsbuffer/tsbuffer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "publish-npm": {
+      "executor": "@ntsrpc/deploy-npm:deploy",
+      "options": {
+        "access": "restricted",
+        "registry": "https://registry.npmjs.org/",
+        "replaceScope": "@ntsrpc"
+      }
+    },
+    "publish-github": {
+      "executor": "@ntsrpc/deploy-npm:deploy",
+      "options": {
+        "access": "restricted",
+        "registry": "https://npm.pkg.github.com/",
+        "replaceScope": "@stringke"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx run tsbuffer-tsbuffer:publish-npm",
+          "nx run tsbuffer-tsbuffer:publish-github"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "tsbuffer"
+  ]
 }

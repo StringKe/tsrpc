@@ -16,6 +16,10 @@ import { ApiCallWs } from './ApiCallWs'
 import { MsgCallWs } from './MsgCallWs'
 import { WsServer } from './WsServer'
 
+
+
+
+
 export interface WsConnectionOptions<ServiceType extends BaseServiceType>
     extends BaseConnectionOptions<ServiceType> {
     server: WsServer<ServiceType>
@@ -37,16 +41,17 @@ export class WsConnection<
     ServiceType extends BaseServiceType = any,
 > extends BaseConnection<ServiceType> {
     readonly type = 'LONG'
-
-    protected readonly ApiCallClass = ApiCallWs
-    protected readonly MsgCallClass = MsgCallWs
-
     readonly ws: WebSocket
     readonly httpReq: http.IncomingMessage
     override readonly server!: WsServer<ServiceType>
     override dataType!: 'text' | 'buffer'
     // 是否已经收到了客户端的第一条消息，以确认了客户端的 dataType
     isDataTypeConfirmed?: boolean
+    protected readonly ApiCallClass = ApiCallWs
+    protected readonly MsgCallClass = MsgCallWs
+    protected _rsClose?: () => void
+    private _lastHeartbeatTime = 0
+    private _heartbeatInterval?: ReturnType<typeof setInterval>
 
     constructor(options: WsConnectionOptions<ServiceType>) {
         super(
@@ -127,9 +132,6 @@ export class WsConnection<
         }
     }
 
-    private _lastHeartbeatTime = 0
-    private _heartbeatInterval?: ReturnType<typeof setInterval>
-
     get status(): ConnectionStatus {
         if (this.ws.readyState === WebSocket.CLOSED) {
             return ConnectionStatus.Closed
@@ -138,6 +140,17 @@ export class WsConnection<
             return ConnectionStatus.Closing
         }
         return ConnectionStatus.Opened
+    }
+
+    /** Close WebSocket connection */
+    close(reason?: string, code = 1000): Promise<void> {
+        // 已连接 Close之
+        return new Promise<void>((rs) => {
+            this._rsClose = rs
+            this.ws.close(code, reason)
+        }).finally(() => {
+            this._rsClose = undefined
+        })
     }
 
     protected async doSendData(
@@ -161,17 +174,5 @@ export class WsConnection<
         }
 
         return { isSucc: true }
-    }
-
-    protected _rsClose?: () => void
-    /** Close WebSocket connection */
-    close(reason?: string, code = 1000): Promise<void> {
-        // 已连接 Close之
-        return new Promise<void>((rs) => {
-            this._rsClose = rs
-            this.ws.close(code, reason)
-        }).finally(() => {
-            this._rsClose = undefined
-        })
     }
 }

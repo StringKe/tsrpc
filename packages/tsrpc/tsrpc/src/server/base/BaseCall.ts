@@ -4,6 +4,10 @@ import { BaseServiceType } from '@ntsrpc/tsrpc-proto'
 import { PrefixLogger } from '../models/PrefixLogger'
 import { BaseConnection } from './BaseConnection'
 
+
+
+
+
 export interface BaseCallOptions<ServiceType extends BaseServiceType> {
     /** Connection */
     conn: BaseConnection<ServiceType>

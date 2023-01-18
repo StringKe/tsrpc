@@ -1,30 +1,26 @@
 /* eslint-disable no-case-declarations */
 
-import { sumBy } from 'lodash'
+import { sumBy } from 'lodash';
 
-import {
-    InterfaceTypeSchema,
-    IntersectionTypeSchema,
-    NumberTypeSchema,
-    OmitTypeSchema,
-    OverwriteTypeSchema,
-    PartialTypeSchema,
-    PickTypeSchema,
-    SchemaType,
-    TSBufferSchema,
-    TypeReference,
-    UnionTypeSchema,
-} from '@ntsrpc/tsbuffer-schema'
-import { TSBufferValidator } from '@ntsrpc/tsbuffer-validator'
 
-import { Base64Util } from '..'
-import { CoderUtil } from '../models/CoderUtil'
-import { Config } from '../models/Config'
-import { IdBlockUtil } from '../models/IdBlockUtil'
-import { SchemaUtil } from '../models/SchemaUtil'
-import { TypedArray, TypedArrays } from '../models/TypedArrays'
-import { Varint64 } from '../models/Varint64'
-import { BufferWriter } from './BufferWriter'
+
+import { InterfaceTypeSchema, IntersectionTypeSchema, NumberTypeSchema, OmitTypeSchema, OverwriteTypeSchema, PartialTypeSchema, PickTypeSchema, SchemaType, TSBufferSchema, TypeReference, UnionTypeSchema } from '@ntsrpc/tsbuffer-schema';
+import { TSBufferValidator } from '@ntsrpc/tsbuffer-validator';
+
+
+
+import { Base64Util } from '..';
+import { CoderUtil } from '../models/CoderUtil';
+import { Config } from '../models/Config';
+import { IdBlockUtil } from '../models/IdBlockUtil';
+import { SchemaUtil } from '../models/SchemaUtil';
+import { TypedArray, TypedArrays } from '../models/TypedArrays';
+import { Varint64 } from '../models/Varint64';
+import { BufferWriter } from './BufferWriter';
+
+
+
+
 
 /** @internal */
 export interface EncoderOptions {

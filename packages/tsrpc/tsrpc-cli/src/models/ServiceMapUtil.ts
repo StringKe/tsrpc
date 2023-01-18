@@ -1,5 +1,9 @@
 import { ApiServiceDef, MsgServiceDef, ServiceProto } from '@ntsrpc/tsrpc-proto'
 
+
+
+
+
 /** A utility for generate `ServiceMap` */
 export class ServiceMapUtil {
     static getServiceMap(proto: ServiceProto): ServiceMap {

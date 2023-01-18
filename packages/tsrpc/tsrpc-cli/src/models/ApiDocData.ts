@@ -1,9 +1,9 @@
 export interface ApiDocData {
-    servers: string[],
+    servers: string[]
     apis: {
-        apiName: string,
-        desc: string,
-        reqType: string,
+        apiName: string
+        desc: string
+        reqType: string
         resType: string
     }[]
 }

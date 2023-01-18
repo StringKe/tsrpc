@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "executors": {
+    "deploy": {
+      "implementation": "./src/executors/deploy/executor",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Publish your libraries to NPM with just one command"
+    }
+  },
+  "builders": {
+    "deploy": {
+      "implementation": "./src/executors/deploy/compat",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "Publish your libraries to NPM with just one command"
+    }
+  }
+}

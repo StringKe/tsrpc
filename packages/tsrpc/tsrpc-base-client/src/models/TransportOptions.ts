@@ -4,7 +4,7 @@ export interface TransportOptions {
      * `undefined` represents no timeout
      * @defaultValue `undefined`
      */
-    timeout?: number;
+    timeout?: number
 
     /**
      * Which can be passed to `client.abortByKey(abortKey)`.
@@ -18,10 +18,10 @@ export interface TransportOptions {
      * client.callApi('SendData', { data: 'AAA' }, { abortKey: 'Session#123' });
      * client.callApi('SendData', { data: 'BBB' }, { abortKey: 'Session#123' });
      * client.callApi('SendData', { data: 'CCC' }, { abortKey: 'Session#123' });
-     * 
+     *
      * // And abort the at once
      * client.abortByKey('Session#123');
      * ```
      */
-    abortKey?: string;
+    abortKey?: string
 }

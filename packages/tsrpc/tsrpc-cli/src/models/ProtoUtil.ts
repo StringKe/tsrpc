@@ -17,6 +17,10 @@ import { importTS } from './importTS'
 import { TsrpcConfig } from './TsrpcConfig'
 import { error, formatStr } from './util'
 
+
+
+
+
 export class ProtoUtil {
     static async loadServiceProto(
         filepath: string,

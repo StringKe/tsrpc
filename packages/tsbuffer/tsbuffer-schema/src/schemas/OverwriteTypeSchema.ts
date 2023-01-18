@@ -2,6 +2,10 @@ import { BaseSchema } from '../BaseSchema'
 import { InterfaceReference } from '../models/InterfaceReference'
 import { InterfaceTypeSchema } from './InterfaceTypeSchema'
 
+
+
+
+
 /**
  * TSBuffer utility type, which represents overwrite some properties from a interface.
  *

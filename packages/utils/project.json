@@ -5,16 +5,17 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/rollup:rollup",
-      "outputs": [
-        "{options.outputPath}"
+      "project": "packages/utils/package.json",
+      "outputPath": "dist/utils/types",
+      "main": "packages/utils/src/index.ts",
+      "tsConfig": "packages/utils/tsconfig.lib.json",
+      "format": [
+        "esm",
+        "cjs"
       ],
-      "options": {
-        "outputPath": "dist/packages/utils",
-        "main": "packages/utils/src/index.ts",
-        "tsConfig": "packages/utils/tsconfig.lib.json",
-        "assets": []
-      }
+      "generateExportsField": true,
+      "buildableProjectDepsInPackageJsonType": "dependencies",
+      "assets": []
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -35,6 +36,31 @@
       "options": {
         "jestConfig": "packages/utils/jest.config.ts",
         "passWithNoTests": true
+      }
+    },
+    "publish-npm": {
+      "executor": "@ntsrpc/deploy-npm:deploy",
+      "options": {
+        "access": "restricted",
+        "registry": "https://registry.npmjs.org/",
+        "replaceScope": "@ntsrpc"
+      }
+    },
+    "publish-github": {
+      "executor": "@ntsrpc/deploy-npm:deploy",
+      "options": {
+        "access": "restricted",
+        "registry": "https://npm.pkg.github.com/",
+        "replaceScope": "@stringke"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx run utils:publish-npm",
+          "nx run utils:publish-github"
+        ]
       }
     }
   },

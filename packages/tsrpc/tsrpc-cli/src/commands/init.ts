@@ -7,6 +7,10 @@ import { merge } from 'lodash'
 import { resPath } from '../bin'
 import { i18n } from '../i18n/i18n'
 
+
+
+
+
 export async function cmdInit(_options: Record<string, never>) {
     if (await fs.pathExists('tsrpc.config.ts')) {
         throw new Error(i18n.fileAlreadyExists('tsrpc.config.ts'))

@@ -12,6 +12,10 @@ import {
 import { BaseConnectionOptions, ConnectionStatus } from '../base/BaseConnection'
 import { ApiCallInner } from './ApiCallInner'
 
+
+
+
+
 export interface InnerConnectionOptions<ServiceType extends BaseServiceType>
     extends BaseConnectionOptions<ServiceType> {
     return:

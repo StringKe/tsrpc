@@ -1,11 +1,13 @@
-import {
-    BaseWsClient,
-    BaseWsClientOptions,
-    defaultBaseWsClientOptions,
-} from '@ntsrpc/tsrpc-base-client'
-import { BaseServiceType, ServiceProto } from '@ntsrpc/tsrpc-proto'
+import { BaseWsClient, BaseWsClientOptions, defaultBaseWsClientOptions } from '@ntsrpc/tsrpc-base-client';
+import { BaseServiceType, ServiceProto } from '@ntsrpc/tsrpc-proto';
 
-import { WebSocketProxy } from './WebSocketProxy'
+
+
+import { WebSocketProxy } from './WebSocketProxy';
+
+
+
+
 
 /**
  * Client for TSRPC WebSocket Server.

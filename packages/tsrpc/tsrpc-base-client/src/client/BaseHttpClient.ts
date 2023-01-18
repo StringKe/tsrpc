@@ -1,12 +1,13 @@
-import { BaseServiceType, ServiceProto, TsrpcError } from '@ntsrpc/tsrpc-proto'
+import { BaseServiceType, ServiceProto, TsrpcError } from '@ntsrpc/tsrpc-proto';
 
-import { TransportOptions } from '../models/TransportOptions'
-import {
-    BaseClient,
-    BaseClientOptions,
-    defaultBaseClientOptions,
-    PendingApiItem,
-} from './BaseClient'
+
+
+import { TransportOptions } from '../models/TransportOptions';
+import { BaseClient, BaseClientOptions, defaultBaseClientOptions, PendingApiItem } from './BaseClient';
+
+
+
+
 
 /**
  * Base HTTP Client

@@ -16,6 +16,10 @@ import { ApiCallHttp } from './ApiCallHttp'
 import { HttpServer } from './HttpServer'
 import { MsgCallHttp } from './MsgCallHttp'
 
+
+
+
+
 export interface HttpConnectionOptions<ServiceType extends BaseServiceType>
     extends BaseConnectionOptions<ServiceType> {
     server: HttpServer<ServiceType>
@@ -27,10 +31,6 @@ export class HttpConnection<
     ServiceType extends BaseServiceType = any,
 > extends BaseConnection<ServiceType> {
     readonly type = 'SHORT'
-
-    protected readonly ApiCallClass = ApiCallHttp
-    protected readonly MsgCallClass = MsgCallHttp
-
     readonly httpReq: http.IncomingMessage & { rawBody?: Buffer }
     readonly httpRes: http.ServerResponse
     override readonly server!: HttpServer<ServiceType>
@@ -38,12 +38,13 @@ export class HttpConnection<
      * Whether the transportation of the connection is JSON encoded instead of binary encoded.
      */
     readonly isJSON: boolean | undefined
-
     /**
      * In short connection, one connection correspond one call.
      * It may be `undefined` when the request data is not fully received yet.
      */
     call?: ApiCallHttp | MsgCallHttp
+    protected readonly ApiCallClass = ApiCallHttp
+    protected readonly MsgCallClass = MsgCallHttp
 
     constructor(options: HttpConnectionOptions<ServiceType>) {
         super(
@@ -68,24 +69,6 @@ export class HttpConnection<
         }
     }
 
-    protected async doSendData(
-        data: string | Uint8Array,
-        call?: ApiCall,
-    ): Promise<{ isSucc: true } | { isSucc: false; errMsg: string }> {
-        if (typeof data === 'string') {
-            this.httpRes.setHeader(
-                'Content-Type',
-                'application/json; charset=utf-8',
-            )
-        }
-        this.httpRes.end(
-            typeof data === 'string'
-                ? data
-                : Buffer.from(data.buffer, data.byteOffset, data.byteLength),
-        )
-        return { isSucc: true }
-    }
-
     /**
      * Close the connection, the reason would be attached to response header `X-TSRPC-Close-Reason`.
      */
@@ -107,5 +90,23 @@ export class HttpConnection<
         const call = super.makeCall(input) as ApiCallHttp | MsgCallHttp
         this.call = call
         return call
+    }
+
+    protected async doSendData(
+        data: string | Uint8Array,
+        call?: ApiCall,
+    ): Promise<{ isSucc: true } | { isSucc: false; errMsg: string }> {
+        if (typeof data === 'string') {
+            this.httpRes.setHeader(
+                'Content-Type',
+                'application/json; charset=utf-8',
+            )
+        }
+        this.httpRes.end(
+            typeof data === 'string'
+                ? data
+                : Buffer.from(data.buffer, data.byteOffset, data.byteLength),
+        )
+        return { isSucc: true }
     }
 }

@@ -9,6 +9,10 @@ import { i18n } from '../i18n/i18n'
 import { ProtoUtil } from '../models/ProtoUtil'
 import { error } from '../models/util'
 
+
+
+
+
 export interface CmdValidateOptions {
     proto: string | undefined
     schemaId: string | undefined
@@ -43,7 +47,7 @@ export async function cmdValidate(options: CmdValidateOptions) {
         }
     } else if (options.expression) {
         try {
-            inputValue = eval(`()=>(${options.expression})`)()
+            inputValue = eval(`() => (${options.expression})`)()
         } catch (e) {
             if (options.verbose) {
                 console.log('exp', options.expression)

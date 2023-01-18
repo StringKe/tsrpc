@@ -7,14 +7,14 @@ export interface BaseServiceType {
     api: {
         [apiName: string]: {
             /** Request type */
-            req: any,
+            req: any
             /** Response type */
             res: any
         }
-    },
+    }
     /** Msg service, listen or send one-way msg without response  */
     msg: {
         /** Msg type */
         [msgName: string]: any
-    };
+    }
 }

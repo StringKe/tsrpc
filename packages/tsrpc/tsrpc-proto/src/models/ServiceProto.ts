@@ -2,10 +2,15 @@ import { TSBufferProto } from '@ntsrpc/tsbuffer-schema'
 
 import { BaseServiceType } from './BaseServiceType'
 
+
+
+
+
 export interface BaseServiceDef {
     id: number
     name: string
 }
+
 /**
  * Send request and wait for response
  * @remarks

@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import chalk from 'chalk'
 
 export const i18nZhCn = {
     welcome: 'https://npmjs.com/tsrpc\n欢迎进入 TSRPC 实用工具 V${version}',
@@ -94,11 +94,13 @@ export const i18nZhCn = {
     missingParam: '缺少 ${param} 参数，键入 tsrpc-cli -h 以查看更多信息。',
     shouldBeDir: '${path} 应当为一个文件夹',
     protoSucc: '✔ ServiceProto 已生成到：${output}',
-    protoFailed: (output: string) => `⨯ ServiceProto 生成失败，请检查 TypeScript 代码是否编译报错: ${output}`,
+    protoFailed: (output: string) =>
+        `⨯ ServiceProto 生成失败，请检查 TypeScript 代码是否编译报错: ${output}`,
     fileNotExists: '文件不存在：${file}',
     fileOpenError: '文件打开失败: ${file}',
     jsParsedError: 'JS表达式解析失败: ${file}',
-    invalidProtoExt: '旧 ServiceProto 格式非法，仅支持 .ts 和 .json 文件: ${file}',
+    invalidProtoExt:
+        '旧 ServiceProto 格式非法，仅支持 .ts 和 .json 文件: ${file}',
     protoParsedError: '旧 ServiceProto 文件解析失败: ${file}',
     expParsedError: '表达式解析失败',
     or: '或',
@@ -113,7 +115,8 @@ export const i18nZhCn = {
     success: ' 成功 ',
     helpGuide: '键入 tsrpc-cli -h 查看更多帮助信息',
     compatibleError: '兼容旧Proto失败: ${innerError}',
-    canOptimizeByNew: (oldProtoPath: string) => `检测到协议中可优化的冗余信息，删除 '${oldProtoPath}' 即可优化，但将导致新旧协议的不兼容。`,
+    canOptimizeByNew: (oldProtoPath: string) =>
+        `检测到协议中可优化的冗余信息，删除 '${oldProtoPath}' 即可优化，但将导致新旧协议的不兼容。`,
     dirNotExists: '文件夹不存在: ${dir}',
     codeError: 'TypeScript 构建失败，请检查代码报错',
     ifUpdateProto: '检测到协议变更，是否重新生成 ServiceProto？',
@@ -122,7 +125,8 @@ export const i18nZhCn = {
     deleteConfirm: '${target}\n目标已经存在，是否删除再继续？',
     canceled: '已取消',
     confInvalid: '配置文件解析失败: ${path}',
-    missingConfigItem: (itemName: string) => `配置文件中缺少配置项 '${itemName}'`,
+    missingConfigItem: (itemName: string) =>
+        `配置文件中缺少配置项 '${itemName}'`,
     nothingSyncConf: '配置文件中没有配置 sync 项目',
     syncedSucc: '✔ 同步完成',
     allSyncedSucc: '✔ 已完成所有同步',
@@ -151,6 +155,8 @@ export const i18nZhCn = {
     docMdSucc: (path: string) => `Markdown 已成成到：${chalk.cyan(path)}`,
 
     fileAlreadyExists: (path: string) => `${path} 已经存在`,
-    npmNotInited: `package.json 不存在，请先执行 ${chalk.cyan('npm init')} 初始化`,
+    npmNotInited: `package.json 不存在，请先执行 ${chalk.cyan(
+        'npm init',
+    )} 初始化`,
     initSucc: (path: string) => `✔ 初始化成功：${path}`,
 }

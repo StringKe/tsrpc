@@ -1,41 +1,70 @@
 {
-    "name": "tsrpc-tsrpc-proto",
-    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "packages/tsrpc/tsrpc-proto/src",
-    "projectType": "library",
-    "targets": {
-        "build": {
-            "executor": "@nrwl/rollup:rollup",
-            "outputs": ["{options.outputPath}"],
-            "options": {
-                "outputPath": "dist/packages/tsrpc/tsrpc-proto",
-                "main": "packages/tsrpc/tsrpc-proto/src/index.ts",
-                "tsConfig": "packages/tsrpc/tsrpc-proto/tsconfig.lib.json",
-                "assets": []
-            }
-        },
-        "publish": {
-            "executor": "nx:run-commands",
-            "options": {
-                "command": "node tools/scripts/publish.mjs tsrpc-tsrpc-proto {args.ver} {args.tag}"
-            },
-            "dependsOn": ["build"]
-        },
-        "lint": {
-            "executor": "@nrwl/linter:eslint",
-            "outputs": ["{options.outputFile}"],
-            "options": {
-                "lintFilePatterns": ["packages/tsrpc/tsrpc-proto/**/*.ts"]
-            }
-        },
-        "test": {
-            "executor": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-            "options": {
-                "jestConfig": "packages/tsrpc/tsrpc-proto/jest.config.ts",
-                "passWithNoTests": true
-            }
-        }
+  "name": "tsrpc-tsrpc-proto",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/tsrpc/tsrpc-proto/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "project": "packages/tsrpc/tsrpc-proto/package.json",
+      "outputPath": "dist/tsrpc-tsrpc-proto/types",
+      "main": "packages/tsrpc/tsrpc-proto/src/index.ts",
+      "tsConfig": "packages/tsrpc/tsrpc-proto/tsconfig.lib.json",
+      "format": [
+        "esm",
+        "cjs"
+      ],
+      "generateExportsField": true,
+      "buildableProjectDepsInPackageJsonType": "dependencies",
+      "assets": []
     },
-    "tags": ["tsrpc"]
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/tsrpc/tsrpc-proto/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/tsrpc/tsrpc-proto/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "publish-npm": {
+      "executor": "@ntsrpc/deploy-npm:deploy",
+      "options": {
+        "access": "restricted",
+        "registry": "https://registry.npmjs.org/",
+        "replaceScope": "@ntsrpc"
+      }
+    },
+    "publish-github": {
+      "executor": "@ntsrpc/deploy-npm:deploy",
+      "options": {
+        "access": "restricted",
+        "registry": "https://npm.pkg.github.com/",
+        "replaceScope": "@stringke"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx run tsrpc-tsrpc-proto:publish-npm",
+          "nx run tsrpc-tsrpc-proto:publish-github"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "tsrpc"
+  ]
 }

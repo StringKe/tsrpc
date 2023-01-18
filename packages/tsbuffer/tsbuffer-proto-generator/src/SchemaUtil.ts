@@ -6,6 +6,10 @@ import {
 
 import { PrePickOmitSchema } from './AstParser'
 
+
+
+
+
 export class SchemaUtil {
     /**
      * 解析一个Schema引用到的其它类型

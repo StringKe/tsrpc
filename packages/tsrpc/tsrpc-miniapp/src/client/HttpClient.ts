@@ -1,11 +1,13 @@
-import {
-    BaseHttpClient,
-    BaseHttpClientOptions,
-    defaultBaseHttpClientOptions,
-} from '@ntsrpc/tsrpc-base-client'
-import { BaseServiceType, ServiceProto } from '@ntsrpc/tsrpc-proto'
+import { BaseHttpClient, BaseHttpClientOptions, defaultBaseHttpClientOptions } from '@ntsrpc/tsrpc-base-client';
+import { BaseServiceType, ServiceProto } from '@ntsrpc/tsrpc-proto';
 
-import { HttpProxy } from './HttpProxy'
+
+
+import { HttpProxy } from './HttpProxy';
+
+
+
+
 
 /**
  * Client for TSRPC HTTP Server.

@@ -1,19 +1,24 @@
-import * as http from 'http'
-import https from 'https'
+import * as http from 'http';
+import https from 'https';
 
-import { sum, sumBy, values } from 'lodash'
 
-import { BaseServiceType, ServiceProto } from '@ntsrpc/tsrpc-proto'
 
-import { HttpUtil } from '../../models/HttpUtil'
-import { TSRPC_VERSION } from '../../models/version'
-import {
-    BaseServer,
-    BaseServerOptions,
-    defaultBaseServerOptions,
-    ServerStatus,
-} from '../base/BaseServer'
-import { HttpConnection } from './HttpConnection'
+import { sumBy } from 'lodash';
+
+
+
+import { BaseServiceType, ServiceProto } from '@ntsrpc/tsrpc-proto';
+
+
+
+import { HttpUtil } from '../../models/HttpUtil';
+import { TSRPC_VERSION } from '../../models/version';
+import { BaseServer, BaseServerOptions, defaultBaseServerOptions, ServerStatus } from '../base/BaseServer';
+import { HttpConnection } from './HttpConnection';
+
+
+
+
 
 /**
  * TSRPC Server, based on HTTP connection.
@@ -23,6 +28,8 @@ export class HttpServer<
     ServiceType extends BaseServiceType = any,
 > extends BaseServer<ServiceType> {
     override readonly options!: HttpServerOptions<ServiceType>
+    /** Native `http.Server` of NodeJS */
+    httpServer?: http.Server | https.Server
 
     constructor(
         proto: ServiceProto<ServiceType>,
@@ -41,8 +48,6 @@ export class HttpServer<
             : '/'
     }
 
-    /** Native `http.Server` of NodeJS */
-    httpServer?: http.Server | https.Server
     /**
      * {@inheritDoc BaseServer.start}
      */

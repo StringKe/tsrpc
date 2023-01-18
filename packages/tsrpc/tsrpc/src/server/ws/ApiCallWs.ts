@@ -4,6 +4,10 @@ import { ApiCall, ApiCallOptions } from '../base/ApiCall'
 import { ConnectionStatus } from '../base/BaseConnection'
 import { WsConnection } from './WsConnection'
 
+
+
+
+
 export interface ApiCallWsOptions<Req, ServiceType extends BaseServiceType>
     extends ApiCallOptions<Req, ServiceType> {
     conn: WsConnection<ServiceType>
