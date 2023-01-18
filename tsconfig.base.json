@@ -1,42 +1,59 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-        "rootDir": ".",
-        "sourceMap": true,
-        "declaration": false,
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "esModuleInterop": true,
-        "importHelpers": true,
-        "target": "es2015",
-        "module": "esnext",
-        "lib": ["es2017", "dom"],
-        "skipLibCheck": true,
-        "skipDefaultLibCheck": true,
-        "baseUrl": ".",
-        "paths": {
-            "@ntsrpc/tsbuffer": ["packages/tsbuffer/tsbuffer/src/index.ts"],
-            "@ntsrpc/tsbuffer-proto-generator": [
-                "packages/tsbuffer/tsbuffer-proto-generator/src/index.ts"
-            ],
-            "@ntsrpc/tsbuffer-schema": [
-                "packages/tsbuffer/tsbuffer-schema/src/index.ts"
-            ],
-            "@ntsrpc/tsbuffer-validator": [
-                "packages/tsbuffer/tsbuffer-validator/src/index.ts"
-            ],
-            "@ntsrpc/tsrpc": ["packages/tsrpc/tsrpc/src/index.ts"],
-            "@ntsrpc/tsrpc-base-client": [
-                "packages/tsrpc/tsrpc-base-client/src/index.ts"
-            ],
-            "@ntsrpc/tsrpc-cli": ["packages/tsrpc/tsrpc-cli/src/index.ts"],
-            "@ntsrpc/tsrpc-miniapp": [
-                "packages/tsrpc/tsrpc-miniapp/src/index.ts"
-            ],
-            "@ntsrpc/tsrpc-proto": ["packages/tsrpc/tsrpc-proto/src/index.ts"],
-            "@ntsrpc/utils": ["packages/utils/src/index.ts"]
-        }
-    },
-    "exclude": ["node_modules", "tmp"]
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ntsrpc/tsbuffer": [
+        "packages/tsbuffer/tsbuffer/src/index.ts"
+      ],
+      "@ntsrpc/tsbuffer-proto-generator": [
+        "packages/tsbuffer/tsbuffer-proto-generator/src/index.ts"
+      ],
+      "@ntsrpc/tsbuffer-schema": [
+        "packages/tsbuffer/tsbuffer-schema/src/index.ts"
+      ],
+      "@ntsrpc/tsbuffer-validator": [
+        "packages/tsbuffer/tsbuffer-validator/src/index.ts"
+      ],
+      "@ntsrpc/tsrpc": [
+        "packages/tsrpc/tsrpc/src/index.ts"
+      ],
+      "@ntsrpc/tsrpc-base-client": [
+        "packages/tsrpc/tsrpc-base-client/src/index.ts"
+      ],
+      "@ntsrpc/tsrpc-cli": [
+        "packages/tsrpc/tsrpc-cli/src/index.ts"
+      ],
+      "@ntsrpc/tsrpc-miniapp": [
+        "packages/tsrpc/tsrpc-miniapp/src/index.ts"
+      ],
+      "@ntsrpc/tsrpc-proto": [
+        "packages/tsrpc/tsrpc-proto/src/index.ts"
+      ],
+      "@ntsrpc/utils": [
+        "packages/utils/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
