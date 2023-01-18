@@ -51,7 +51,7 @@ export default async function (tree: Tree, schema: any) {
                     const [name, scope, url] = item
                     const targetName = `publish-${name}`
                     project.targets[targetName] = {
-                        executor: '@ntsrpc/deploy-npm:deploy',
+                        executor: '@ntsrpc/npm-deploy:deploy',
                         options: {
                             access: 'restricted',
                             registry: url,

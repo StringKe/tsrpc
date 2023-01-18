@@ -45,7 +45,7 @@
       }
     },
     "publish-npm": {
-      "executor": "@ntsrpc/deploy-npm:deploy",
+      "executor": "@ntsrpc/npm-deploy:deploy",
       "options": {
         "access": "restricted",
         "registry": "https://registry.npmjs.org/",
@@ -53,7 +53,7 @@
       }
     },
     "publish-github": {
-      "executor": "@ntsrpc/deploy-npm:deploy",
+      "executor": "@ntsrpc/npm-deploy:deploy",
       "options": {
         "access": "restricted",
         "registry": "https://npm.pkg.github.com/",
